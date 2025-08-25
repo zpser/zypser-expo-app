@@ -1,25 +1,50 @@
-# expo-router-starter-kit 🏎️📱
+# Zypser Mobile App 🏎️📱
 
-Expo-router-starter-kit is a streamlined template for building cross-platform mobile apps with Expo. This template provides a starting point with updated features and simplified components for efficient development. 
+Zypser is a cross-platform mobile application built with Expo and React Native. This app provides a streamlined platform for business networking and growth.
 
 NOTE: This is a Sandbox environment (Expo Go)
 
 ## 💻 Installation
 
 ```bash
-# Clone and create a new repository from this template
+# Clone the repository
+git clone <repository-url>
+cd zypser-expo-app
+
 # Install dependencies
-pnpm install
+npm install
+```
+
+## 🔧 Environment Setup
+
+Before running the app, you need to set up your environment variables:
+
+1. Copy the example environment file:
+```bash
+cp .env.example .env.local
+```
+
+2. Edit `.env.local` with your actual values:
+```bash
+# Required Environment Variables
+EXPO_PUBLIC_CLOUDFRONT_URL=https://your-cloudfront-url.com
+EXPO_PUBLIC_API_URL=https://your-api-url.com
+
+# Optional Environment Variables
+EXPO_PUBLIC_OTP_VALID_TIME=60000
+EXPO_PUBLIC_APP_NAME=Zypser
+```
+
+## 🚀 Running the App
+
+```bash
+# Start the development server
+npm start
 ```
 
 ```bash
-# Run the project
-pnpm ios
-```
-
-```bash
-# or
-pnpm android
+# Run on iOS
+npm run ios
 ```
 
 ## 🔗 Deep Linking
