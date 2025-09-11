@@ -1,96 +1,83 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { router } from "expo-router";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import CustomHeader from "@/components/core/header";
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { router } from 'expo-router';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import CustomHeader from '@/components/core/header';
 
 // Validation schema
 const phoneSchema = z.object({
   phoneNumber: z
     .string()
-    .min(10, "Phone number must be at least 10 digits")
-    .max(15, "Phone number must be at most 15 digits")
-    .regex(/^\d+$/, "Phone number must contain only digits"),
+    .min(10, 'Phone number must be at least 10 digits')
+    .max(15, 'Phone number must be at most 15 digits')
+    .regex(/^\d+$/, 'Phone number must contain only digits'),
 });
 
 const emailSchema = z.object({
   email: z
     .string()
-    .email("Please enter a valid email address")
-    .min(1, "Email is required"),
+    .email('Please enter a valid email address')
+    .min(1, 'Email is required'),
 });
 
 type PhoneFormData = z.infer<typeof phoneSchema>;
 type EmailFormData = z.infer<typeof emailSchema>;
 
 const Login = () => {
-  const [loginMethod, setLoginMethod] = useState<"phone" | "email">("phone");
+  const [loginMethod, setLoginMethod] = useState<'phone' | 'email'>('phone');
 
   const phoneForm = useForm<PhoneFormData>({
     resolver: zodResolver(phoneSchema),
     defaultValues: {
-      phoneNumber: "",
+      phoneNumber: '',
     },
   });
 
   const emailForm = useForm<EmailFormData>({
     resolver: zodResolver(emailSchema),
     defaultValues: {
-      email: "",
+      email: '',
     },
   });
 
   const onPhoneSubmit = (data: PhoneFormData) => {
-    console.log("Phone login:", data);
-    router.push("/otp");
-
+    console.log('Phone login:', data);
     // Handle phone login logic here
   };
 
   const onEmailSubmit = (data: EmailFormData) => {
-    console.log("Email login:", data);
-    router.push("/otp");
+    console.log('Email login:', data);
     // Handle email login logic here
   };
 
   const handleGoogleLogin = () => {
-    console.log("Continue with Google");
+    console.log('Continue with Google');
     // Handle Google login logic here
   };
 
   const handleAppleLogin = () => {
-    console.log("Continue with Apple");
+    console.log('Continue with Apple');
     // Handle Apple login logic here
   };
 
   return (
-    <SafeAreaView
-      className="flex-1 bg-allStone"
-      edges={["top", "left", "right"]}
-    >
+    <SafeAreaView className="flex-1 bg-gray-50" edges={['top', 'left', 'right']}>
       {/* Custom Header */}
       <CustomHeader
         title="Login"
         showBackButton={true}
+        backgroundColor="#F9FAFB" // bg-gray-50
         textColor="#111827" // text-gray-900
         backButtonColor="#7D4DEE" // text-primaryButton
         statusBarStyle="dark"
       />
-
-      <KeyboardAvoidingView
-        className="flex-1"
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      
+      <KeyboardAvoidingView 
+        className="flex-1" 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
           <View className="px-6 pt-6">
@@ -98,15 +85,13 @@ const Login = () => {
             <View className="flex-row bg-gray-200 rounded-full p-1 mb-8">
               <TouchableOpacity
                 className={`flex-1 py-3 rounded-full ${
-                  loginMethod === "phone"
-                    ? "bg-primaryButton"
-                    : "bg-transparent"
+                  loginMethod === 'phone' ? 'bg-primaryButton' : 'bg-transparent'
                 }`}
-                onPress={() => setLoginMethod("phone")}
+                onPress={() => setLoginMethod('phone')}
               >
                 <Text
                   className={`text-center font-medium ${
-                    loginMethod === "phone" ? "text-white" : "text-gray-600"
+                    loginMethod === 'phone' ? 'text-white' : 'text-gray-600'
                   }`}
                 >
                   Phone
@@ -115,15 +100,13 @@ const Login = () => {
               <Text className="self-center mx-4 text-gray-400">or</Text>
               <TouchableOpacity
                 className={`flex-1 py-3 rounded-full ${
-                  loginMethod === "email"
-                    ? "bg-primaryButton"
-                    : "bg-transparent"
+                  loginMethod === 'email' ? 'bg-primaryButton' : 'bg-transparent'
                 }`}
-                onPress={() => setLoginMethod("email")}
+                onPress={() => setLoginMethod('email')}
               >
                 <Text
                   className={`text-center font-medium ${
-                    loginMethod === "email" ? "text-white" : "text-gray-600"
+                    loginMethod === 'email' ? 'text-white' : 'text-gray-600'
                   }`}
                 >
                   Email
@@ -132,7 +115,7 @@ const Login = () => {
             </View>
 
             {/* Phone Form */}
-            {loginMethod === "phone" && (
+            {loginMethod === 'phone' && (
               <View>
                 <Text className="text-lg font-semibold text-gray-900 mb-4">
                   Phone Number
@@ -168,9 +151,8 @@ const Login = () => {
                 )}
 
                 <Text className="text-sm text-gray-500 mb-8 leading-5">
-                  We will send a text with a verification code. Message and data
-                  rates may apply. By continuing, you agree to our{" "}
-                  <Text className="text-primaryButton">Terms of Service</Text> &{" "}
+                  We will send a text with a verification code. Message and data rates may apply. By continuing, you agree to our{' '}
+                  <Text className="text-primaryButton">Terms of Service</Text> &{' '}
                   <Text className="text-primaryButton">Privacy Policy</Text>.
                 </Text>
 
@@ -186,7 +168,7 @@ const Login = () => {
             )}
 
             {/* Email Form */}
-            {loginMethod === "email" && (
+            {loginMethod === 'email' && (
               <View>
                 <Text className="text-lg font-semibold text-gray-900 mb-4">
                   Email Address
@@ -218,9 +200,8 @@ const Login = () => {
                 )}
 
                 <Text className="text-sm text-gray-500 mb-8 leading-5">
-                  We will send an email with a verification link. By continuing,
-                  you agree to our{" "}
-                  <Text className="text-primaryButton">Terms of Service</Text> &{" "}
+                  We will send an email with a verification link. By continuing, you agree to our{' '}
+                  <Text className="text-primaryButton">Terms of Service</Text> &{' '}
                   <Text className="text-primaryButton">Privacy Policy</Text>.
                 </Text>
 
@@ -267,8 +248,8 @@ const Login = () => {
 
         {/* Footer */}
         <View className="px-6 pb-8 pt-4">
-          <Text className="text-center text-black font-medium text-lg">
-            <Text className="text-primaryButton italic">zypser</Text> customers
+          <Text className="text-center text-primaryButton font-medium text-lg">
+            <Text className="text-primaryButton italic">zypser</Text> partners
           </Text>
         </View>
       </KeyboardAvoidingView>

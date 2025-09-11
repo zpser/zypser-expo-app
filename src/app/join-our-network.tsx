@@ -1,19 +1,11 @@
-import React, { useMemo, useState } from "react";
-import {
-  View,
-  useWindowDimensions,
-  Text,
-  TouchableOpacity,
-} from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
-import { router } from "expo-router";
-import CustomSwiper from "@/components/CustomSwiper";
-import NoMiddlemen from "@/components/onboarding/NoMiddlemen";
-import GrowYourBusiness from "@/components/onboarding/GrowYourBusiness";
-import ProblemIdentification from "@/components/onboarding/ProblemIdentification";
+import React, { useMemo, useState } from 'react';
+import { View, useWindowDimensions, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { router } from 'expo-router';
+import CustomSwiper from '@/components/CustomSwiper';
+import NoMiddlemen from '@/components/onboarding/NoMiddlemen';
+import GrowYourBusiness from '@/components/onboarding/GrowYourBusiness';
+import ProblemIdentification from '@/components/onboarding/ProblemIdentification';
 
 const JoinOurNetwork = () => {
   const insets = useSafeAreaInsets();
@@ -29,39 +21,30 @@ const JoinOurNetwork = () => {
 
   const handleSignUpClick = () => {
     // Navigate to signup screen when implemented
-    console.log("Navigate to signup");
+    console.log('Navigate to signup');
   };
-
+  
   const handleLoginClick = () => {
-    router.push("/home");
+    router.push('/login');
   };
 
   return (
-    <SafeAreaView
-      className="flex-1 bg-allStone"
-      edges={["top", "bottom", "left", "right"]}
-    >
+    <SafeAreaView className="flex-1 bg-allStone" edges={['top','bottom','left','right']}>
       <View className="flex-1 w-full max-w-md self-center">
-        <View
-          className="px-4 pt-2"
-          onLayout={(e) => setHeaderH(e.nativeEvent.layout.height)}
-        >
+        <View className="px-4 pt-2" onLayout={e => setHeaderH(e.nativeEvent.layout.height)}>
           <Text className="text-lg font-semibold italic text-center">
             <Text className="text-primaryButton">zypser</Text> partners
           </Text>
         </View>
 
-        <View
-          className="flex-1 items-center justify-center px-3"
-          style={{ height: swiperH }}
-        >
+        <View className="flex-1 items-center justify-center px-3" style={{ height: swiperH }}>
           <CustomSwiper
             height={swiperH}
             slidesPerView={1}
             delay={3000}
             autoScroll
             showDots
-            className="flex"
+            className='flex'
           >
             <NoMiddlemen />
             <GrowYourBusiness />
@@ -72,9 +55,7 @@ const JoinOurNetwork = () => {
         {/* Bottom buttons (safe-area padded) */}
         <View
           className="w-full items-center justify-center gap-4 px-4 pt-2 flex-row"
-          onLayout={(e) =>
-            setFooterH(e.nativeEvent.layout.height + insets.bottom + 12)
-          }
+          onLayout={e => setFooterH(e.nativeEvent.layout.height + insets.bottom + 12)}
           style={{ paddingBottom: insets.bottom + 12 }}
         >
           <TouchableOpacity

@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { useFonts } from "expo-font";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { ThemeToggle } from "@/components/core/toggle";
+import { useEffect } from 'react';
+import { useFonts } from 'expo-font';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { ThemeToggle } from '@/components/core/toggle';
 
 // Providers
 // import { ThemeProvider } from '@react-navigation/native';
@@ -25,24 +25,24 @@ import { ThemeToggle } from "@/components/core/toggle";
  */
 
 // Theme
-import { NAV_THEME } from "@/theme";
-import { useColorScheme } from "nativewind";
-import "../../global.css";
+import { NAV_THEME } from '@/theme';
+import { useColorScheme } from 'nativewind';
+import '../../global.css';
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
-} from "expo-router";
+} from 'expo-router';
 
 export const unstable_settings = {
-  initialRouteName: "home",
+  initialRouteName: 'join-our-network',
 };
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
   });
 
@@ -70,25 +70,18 @@ function RootLayoutNav() {
   return (
     <>
       <StatusBar
-        style={colorScheme === "dark" ? "light" : "dark"}
-        key={`root-status-bar-${colorScheme === "dark" ? "light" : "dark"}`}
+        style={colorScheme === 'dark' ? 'light' : 'dark'}
+        key={`root-status-bar-${colorScheme === 'dark' ? 'light' : 'dark'}`}
       />
 
       {/* <ThemeProvider value={NAV_THEME[colorScheme]}> */}
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <Stack screenOptions={{ animation: "ios" }}>
-          <Stack.Screen
-            name="join-our-network"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="modal" options={{ headerShown: false }} />
-          <Stack.Screen name="login" options={{ headerShown: false }} />
-          <Stack.Screen name="otp" options={{ headerShown: false }} />
-          <Stack.Screen name="welcome" options={{ headerShown: false }} />
-          <Stack.Screen name="profileDetail" options={{ headerShown: false }} />
-          <Stack.Screen name="home" options={{headerShown:false}} />
-        </Stack>
-      </GestureHandlerRootView>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Stack screenOptions={{ animation: 'ios' }}>
+            <Stack.Screen name="join-our-network" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ headerShown: false }} />
+            <Stack.Screen name="login" options={{ headerShown: false }} />
+          </Stack>
+        </GestureHandlerRootView>
       {/* </ThemeProvider> */}
     </>
   );

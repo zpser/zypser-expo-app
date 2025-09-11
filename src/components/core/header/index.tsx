@@ -1,13 +1,7 @@
-import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StatusBar,
-  Platform,
-} from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { router } from "expo-router";
+import React from 'react';
+import { View, Text, TouchableOpacity, StatusBar, Platform } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { router } from 'expo-router';
 
 interface CustomHeaderProps {
   title?: string;
@@ -18,9 +12,12 @@ interface CustomHeaderProps {
   backgroundColor?: string;
   textColor?: string;
   backButtonColor?: string;
-  statusBarStyle?: "light" | "dark";
+  statusBarStyle?: 'light' | 'dark';
   centerTitle?: boolean;
 }
+
+
+
 
 const CustomHeader: React.FC<CustomHeaderProps> = ({
   title,
@@ -28,10 +25,10 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
   onBackPress,
   rightComponent,
   leftComponent,
-  backgroundColor = "transparent",
-  textColor = "#111827", // gray-900
-  backButtonColor = "#7D4DEE", // primaryButton
-  statusBarStyle = "dark",
+  backgroundColor = 'transparent',
+  textColor = '#111827', // gray-900
+  backButtonColor = '#7D4DEE', // primaryButton
+  statusBarStyle = 'dark',
   centerTitle = false,
 }) => {
   const insets = useSafeAreaInsets();
@@ -47,14 +44,14 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
   return (
     <>
       <StatusBar
-        barStyle={statusBarStyle === "dark" ? "dark-content" : "light-content"}
+        barStyle={statusBarStyle === 'dark' ? 'dark-content' : 'light-content'}
         backgroundColor={backgroundColor}
-        translucent={Platform.OS === "android"}
+        translucent={Platform.OS === 'android'}
       />
       <View
         className="flex-row items-center px-4"
         style={{
-          paddingTop: Platform.OS === "ios" ? 0 : insets.top,
+          paddingTop: Platform.OS === 'ios' ? 0 : insets.top,
           backgroundColor,
           height: 56,
         }}
@@ -62,18 +59,13 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
         {/* Left Section */}
         <View className="flex-row items-center">
           {showBackButton && (
-            <TouchableOpacity
-              onPress={handleBackPress}
+            <TouchableOpacity 
+              onPress={handleBackPress} 
               className="mr-3 -ml-1"
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-              style={{
-                minWidth: 32,
-                minHeight: 32,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={{ minWidth: 32, minHeight: 32, justifyContent: 'center', alignItems: 'center' }}
             >
-              <Text
+              <Text 
                 className="text-2xl font-normal leading-none"
                 style={{ color: backButtonColor, lineHeight: 24 }}
               >
@@ -81,16 +73,19 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
               </Text>
             </TouchableOpacity>
           )}
-
-          {leftComponent && <View className="mr-3">{leftComponent}</View>}
+          
+          {leftComponent && (
+            <View className="mr-3">
+              {leftComponent}
+            </View>
+          )}
         </View>
 
+
         {/* Center/Title Section */}
-        <View
-          className={`flex-1 ${centerTitle ? "items-center" : "items-start"}`}
-        >
+        <View className={`flex-1 ${centerTitle ? 'items-center' : 'items-start'}`}>
           {title && (
-            <Text
+            <Text 
               className="font-semibold text-[20px] leading-[100%] leading-none"
               style={{ color: textColor, lineHeight: 24 }}
               numberOfLines={1}
