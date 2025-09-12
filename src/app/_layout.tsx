@@ -1,48 +1,35 @@
-import { useEffect } from 'react';
-import { useFonts } from 'expo-font';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { ThemeToggle } from '@/components/core/toggle';
+import { useEffect } from "react";
+import { useFonts } from "expo-font";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { ThemeToggle } from "@/components/core/toggle";
 
 // Providers
 // import { ThemeProvider } from '@react-navigation/native';
 
-/**
- * https://www.npmjs.com/package/react-native-keyboard-controller
- * import { KeyboardProvider } from 'react-native-keyboard-controller';
- *
- *  On Development build you can wrap the Stack into a KeyboardProvider to handle the keyboard avoiding the  screen to be pushed up by the keyboard.
- *
- *  NOTE: On Expo Go the KeyboardProvider is not working since you need to link it to native.
- *
- *  Install: pnpm add react-native-keyboard-controller
- *
- *  Wrap the Stack with the KeyboardProvider -
- * <KeyboardProvider statusBarTranslucent navigationBarTranslucent></KeyboardProvider>
- */
-
 // Theme
-import { NAV_THEME } from '@/theme';
-import { useColorScheme } from 'nativewind';
-import '../../global.css';
+import { NAV_THEME } from "@/theme";
+import { useColorScheme } from "nativewind";
+import "../../global.css";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
-} from 'expo-router';
+} from "expo-router";
 
 export const unstable_settings = {
-  initialRouteName: 'join-our-network',
+  initialRouteName: "index", // Changed to index as entry point
 };
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
   });
 
@@ -68,21 +55,59 @@ function RootLayoutNav() {
   const { colorScheme } = useColorScheme();
 
   return (
-    <>
+    <SafeAreaProvider>
       <StatusBar
-        style={colorScheme === 'dark' ? 'light' : 'dark'}
-        key={`root-status-bar-${colorScheme === 'dark' ? 'light' : 'dark'}`}
+        style={colorScheme === "dark" ? "light" : "dark"}
+        key={`root-status-bar-${colorScheme === "dark" ? "light" : "dark"}`}
       />
 
       {/* <ThemeProvider value={NAV_THEME[colorScheme]}> */}
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <Stack screenOptions={{ animation: 'ios' }}>
-            <Stack.Screen name="join-our-network" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ headerShown: false }} />
-            <Stack.Screen name="login" options={{ headerShown: false }} />
-          </Stack>
-        </GestureHandlerRootView>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Stack screenOptions={{ animation: "ios" }}>
+          {/* Entry point - determines initial route */}
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+
+          {/* Auth group - handles join-our-network, login, otp */}
+          <Stack.Screen name="auth" options={{ headerShown: false }} />
+
+          {/* Onboarding screens */}
+          <Stack.Screen
+            name="welcome"
+            options={{
+              headerShown: false,
+              // Prevent going back to auth
+              gestureEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="profileDetail"
+            options={{
+              headerShown: false,
+              // Prevent going back
+              gestureEnabled: false,
+            }}
+          />
+
+          {/* Main app screens */}
+          <Stack.Screen
+            name="(bottomtab)"
+            options={{
+              headerShown: false,
+              gestureEnabled: false,
+            }}
+          />
+
+          {/* Modal and other screens */}
+          <Stack.Screen
+            name="modal"
+            options={{
+              presentation: "modal",
+              headerShown: false,
+            }}
+          />
+        </Stack>
+      </GestureHandlerRootView>
       {/* </ThemeProvider> */}
-    </>
+    </SafeAreaProvider>
   );
 }

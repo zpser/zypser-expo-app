@@ -1,0 +1,155 @@
+import React from "react";
+import { View, ImageBackground, Dimensions } from "react-native";
+import { TouchableOpacity } from "@/components/core/button/touchable-opacity";
+import { Text } from "@/components/core/text";
+import { Ionicon } from "@/components/core/icon";
+import CustomFlashList from "@/components/core/list/CustomFlashList";
+import SectionTitleBar from "@/components/SectionTitleBar";
+
+const { width } = Dimensions.get("window");
+
+// Service interface
+interface Service {
+  id: number;
+  title: string;
+  image: string;
+  rating: number;
+  reviewCount: string;
+  price: number;
+}
+
+// Sample data
+const recommendedServices: Service[] = [
+  {
+    id: 1,
+    title: "Switch Socket Repair",
+    image:
+      "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=300&h=300&fit=crop",
+    rating: 4.8,
+    reviewCount: "12.3k",
+    price: 49,
+  },
+  {
+    id: 3,
+    title: "Tap Repair",
+    image:
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&h=300&fit=crop",
+    rating: 4.8,
+    reviewCount: "12.3k",
+    price: 49,
+  },
+  {
+    id: 4,
+    title: "AC Service",
+    image:
+      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=300&h=300&fit=crop",
+    rating: 4.9,
+    reviewCount: "8.5k",
+    price: 65,
+  },
+];
+
+interface RecommendedForYouProps {
+  title?: string;
+  data?: Service[];
+  onServicePress?: (serviceId: number) => void;
+  onViewAllPress?: () => void;
+  onAddServicePress?: (serviceId: number) => void;
+  loading?: boolean;
+}
+
+const RecommendedForYou: React.FC<RecommendedForYouProps> = ({
+  title = "Recommended for You",
+  data = recommendedServices,
+  onServicePress,
+  onViewAllPress,
+  onAddServicePress,
+  loading = false,
+}) => {
+  const handleServicePress = (serviceId: number) => {
+    onServicePress?.(serviceId);
+  };
+
+  const handleAddPress = (serviceId: number) => {
+    onAddServicePress?.(serviceId);
+  };
+
+  // Service Item Component
+  const ServiceItem = ({ item }: { item: Service }) => (
+    <View className="mr-3" style={{ width: 150 }}>
+      <TouchableOpacity onPress={() => handleServicePress(item.id)}>
+        {/* Service Image with Add Button */}
+        <View className="relative mb-4">
+          <ImageBackground
+            source={{ uri: item.image }}
+            className="w-[150px] h-[150px] rounded-xl overflow-hidden bg-gray-200"
+            style={{ borderRadius: 12 }}
+          >
+            {/* Add Button */}
+            <TouchableOpacity
+              className="absolute bottom-2 right-2 w-6 h-6 bg-white rounded-full items-center justify-center shadow-lg"
+              onPress={() => handleAddPress(item.id)}
+            >
+              <Ionicon name="add" size={12} color="#7D4DEE" />
+            </TouchableOpacity>
+          </ImageBackground>
+        </View>
+
+        {/* Service Details */}
+        <View className="gap-1.5">
+          {/* Service Title */}
+          <Text
+            variant="footnote"
+            className="text-gray-900 font-medium"
+            numberOfLines={1}
+          >
+            {item.title}
+          </Text>
+
+          {/* Rating */}
+          <View className="flex-row items-center gap-1">
+            <Ionicon name="star" size={14} color="#F4B300" />
+            <Text variant="caption2" className="text-gray-600">
+              {`${item.rating} (${item.reviewCount})`}
+            </Text>
+          </View>
+
+          {/* Price */}
+          <Text variant="footnote" className="text-primaryButton font-medium">
+            {`$${item.price}`}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+
+  return (
+    <View className="bg-white py-6">
+      {/* Header using SectionTitleBar */}
+      <SectionTitleBar
+        title={title}
+        onViewAllPress={onViewAllPress}
+        containerClassName="mb-4 px-4"
+      />
+
+      {/* Horizontal List using CustomFlashList */}
+      <View className="">
+        <CustomFlashList
+          data={data}
+          renderItem={({ item }) => <ServiceItem item={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          containerClassName="px-4 pr-0"
+          loading={loading}
+          emptyText="No recommended services available"
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={{
+            paddingRight: 16,
+          }}
+        />
+      </View>
+    </View>
+  );
+};
+
+export default RecommendedForYou;
