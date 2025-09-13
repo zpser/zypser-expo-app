@@ -2,9 +2,13 @@ import React from "react";
 import { View, Text, TextInput } from "react-native";
 import { Controller, Control, FieldErrors } from "react-hook-form";
 
+type NameFormValues = {
+  name: string;
+};
+
 interface NameInputProps {
-  control: Control<any>;
-  errors: FieldErrors<any>;
+  control: Control<NameFormValues>;
+  errors: FieldErrors<NameFormValues>;
   isFocused: boolean;
   onFocus: () => void;
   onBlur: () => void;

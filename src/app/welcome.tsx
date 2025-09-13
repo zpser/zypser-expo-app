@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  StatusBar,
-} from "react-native";
+import { View, Text, TouchableOpacity, StatusBar } from "react-native";
 import { router } from "expo-router";
 import WelcomeScreenSvg from "@/assets/images/welcomescreen.svg"; // SVG as component
-
-const { width, height } = Dimensions.get("screen"); // Use 'screen' instead of 'window'
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/util/constant/responsive";
 
 const WelcomeScreen = () => {
   const handleContinue = () => {
@@ -27,8 +20,8 @@ const WelcomeScreen = () => {
 
       {/* Background SVG - covers entire screen */}
       <WelcomeScreenSvg
-        width={width}
-        height={height}
+        width={SCREEN_WIDTH}
+        height={SCREEN_HEIGHT}
         style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
 

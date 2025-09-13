@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "@/components/core/button/touchable-opacity";
 import { Text } from "@/components/core/text";
 import CustomSvg from "@/components/core/svg/CustomSvg";
+import { COLORS } from "@/util/constant/colors";
 
 interface ZypserCoverBannerProps {
   onPress?: () => void;
@@ -67,7 +68,7 @@ const ZypserCoverBanner: React.FC<ZypserCoverBannerProps> = ({
                     name="shield"
                     width={154}
                     height={154}
-                    fill="#FFFFFF"
+                    fill={COLORS.white}
                   />
                 </View>
 
@@ -124,10 +125,14 @@ const ZypserCoverBanner: React.FC<ZypserCoverBannerProps> = ({
                     left: 0,
                     right: 0,
                     bottom: 0,
-
                   }}
                 >
-                  <CustomSvg name="union" height={190} width={230} className="w-full h-full" />
+                  <CustomSvg
+                    name="union"
+                    height={190}
+                    width={230}
+                    className="w-full h-full"
+                  />
                 </View>
               </View>
             </View>

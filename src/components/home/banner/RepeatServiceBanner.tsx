@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "@/components/core/button/touchable-opacity";
 import { Text } from "@/components/core/text";
 import CustomSvg from "@/components/core/svg/CustomSvg";
+import { COLORS } from "@/util/constant/colors";
 
 interface RepeatServiceProps {
   onPress?: () => void;
@@ -35,7 +36,7 @@ const RepeatService: React.FC<RepeatServiceProps> = ({
   return (
     <View className="px-4 py-3 bg-allStone">
       <TouchableOpacity onPress={handleCardPress}>
-        <View 
+        <View
           className="rounded-xl overflow-hidden"
           style={{ height: 349 }} // Based on CSS height
         >
@@ -46,7 +47,7 @@ const RepeatService: React.FC<RepeatServiceProps> = ({
             end={{ x: 0, y: 1 }}
             style={{
               flex: 1,
-              position: 'relative',
+              position: "relative",
             }}
           >
             {/* Background Clock SVG */}
@@ -63,22 +64,20 @@ const RepeatService: React.FC<RepeatServiceProps> = ({
                 name="clock"
                 width={100}
                 height={100}
-                fill="#FFFFFF"
+                fill={COLORS.white}
               />
             </View>
 
             {/* Top Section with Text Content */}
-            <View 
+            <View
               className="px-4 pt-4 pb-4"
-              style={{ }} // Based on CSS
+              style={{}} // Based on CSS
             >
-             
-
               {/* Content */}
               <View className="relative z-10  justify-center gap-3">
                 {/* Title */}
                 <View>
-                  <Text 
+                  <Text
                     variant="heading"
                     className="text-white font-bold"
                     style={{ fontSize: 18, lineHeight: 22 }}
@@ -89,8 +88,8 @@ const RepeatService: React.FC<RepeatServiceProps> = ({
                 </View>
 
                 {/* Description */}
-                <View style={{  }}>
-                  <Text 
+                <View style={{}}>
+                  <Text
                     variant="footnote"
                     className="text-white opacity-60 font-medium"
                     style={{ lineHeight: 17 }}
@@ -107,7 +106,7 @@ const RepeatService: React.FC<RepeatServiceProps> = ({
                 source={{ uri: imageUri }}
                 style={{
                   flex: 1,
-                  justifyContent: 'flex-end',
+                  justifyContent: "flex-end",
                 }}
                 imageStyle={{
                   borderBottomLeftRadius: 12,
@@ -116,12 +115,12 @@ const RepeatService: React.FC<RepeatServiceProps> = ({
               >
                 {/* Dark gradient overlay on image */}
                 <LinearGradient
-                  colors={["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.4)"]}
+                  colors={["(0, 0, 0, 0)", "rgba(0, 0, 0, 0.4)"]}
                   locations={[0, 1]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 0, y: 1 }}
                   style={{
-                    position: 'absolute',
+                    position: "absolute",
                     top: 0,
                     left: 0,
                     right: 0,
@@ -134,18 +133,18 @@ const RepeatService: React.FC<RepeatServiceProps> = ({
                   <TouchableOpacity
                     onPress={handleSetupPress}
                     style={{
-                      alignSelf: 'flex-start',
+                      alignSelf: "flex-start",
                     }}
                   >
-                    <View 
+                    <View
                       className="bg-white px-4 py-3 rounded"
                       style={{
                         width: 179,
                         height: 41,
-                        justifyContent: 'center',
+                        justifyContent: "center",
                       }}
                     >
-                      <Text 
+                      <Text
                         variant="footnote"
                         className="text-primaryButton font-bold text-center"
                         style={{ fontSize: 14, lineHeight: 17 }}

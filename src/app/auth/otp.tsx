@@ -17,6 +17,7 @@ import {
   OTPButton,
 } from "@/components/auth";
 import { useOTPLogic } from "@/hooks/auth";
+import { COLORS } from "@/util/constant/colors";
 
 const OTP = () => {
   const {
@@ -55,8 +56,8 @@ const OTP = () => {
       <CustomHeader
         title="Enter OTP"
         showBackButton={true}
-        textColor="#111827" // text-gray-900
-        backButtonColor="#7D4DEE" // text-primaryButton
+        textColor={COLORS.primaryText} // text-gray-900
+        backButtonColor={COLORS.primary} // text-primaryButton
         statusBarStyle="dark"
       />
 

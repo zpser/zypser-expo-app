@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { TouchableOpacity } from "@/components/core/button/touchable-opacity";
 import { Text } from "@/components/core/text";
 import { Ionicon } from "@/components/core/icon";
+import { COLORS } from "@/util/constant/colors";
 
 interface HomeHeaderProps {
   location?: string;
@@ -25,21 +26,17 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({
       style={{ height }}
     >
       <View className="flex-row items-center flex-1">
-        <TouchableOpacity 
+        <TouchableOpacity
           className="mr-3 p-2 rounded-full"
           onPress={onLocationPress}
         >
-          <Ionicon
-            name="location-outline"
-            size={16}
-            color="#7D4DEE"
-          />
+          <Ionicon name="location-outline" size={16} color={COLORS.primary} />
         </TouchableOpacity>
         <Text variant="subhead" className="text-white font-medium">
           {location}
         </Text>
         <View className="w-4 h-4 ml-1">
-          <Ionicon name="chevron-down" size={16} color="#FFFFFF" />
+          <Ionicon name="chevron-down" size={16} color={COLORS.white} />
         </View>
       </View>
 
@@ -51,14 +48,14 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({
           <Ionicon
             name="notifications-outline"
             size={16}
-            color="#7D4DEE"
+            color={COLORS.primary}
           />
         </TouchableOpacity>
         <TouchableOpacity
           className="w-8 h-8 bg-white rounded-full items-center justify-center"
           onPress={onCartPress}
         >
-          <Ionicon name="bag-outline" size={16} color="#7D4DEE" />
+          <Ionicon name="bag-outline" size={16} color={COLORS.primary} />
         </TouchableOpacity>
       </View>
     </View>

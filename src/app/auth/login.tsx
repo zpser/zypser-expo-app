@@ -11,6 +11,7 @@ import {
   SocialLogin,
 } from "@/components/auth";
 import { useLoginLogic } from "@/hooks/auth";
+import { COLORS } from "@/util/constant/colors";
 
 const Login = () => {
   const {
@@ -39,8 +40,8 @@ const Login = () => {
       <CustomHeader
         title="Login"
         showBackButton={true}
-        textColor="#111827" // text-gray-900
-        backButtonColor="#7D4DEE" // text-primaryButton
+        textColor={COLORS.primaryText} // text-gray-900
+        backButtonColor={COLORS.primary} // text-primaryButton
         statusBarStyle="dark"
       />
 

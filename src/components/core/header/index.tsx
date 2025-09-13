@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import { COLORS } from "@/util/constant/colors";
 
 interface CustomHeaderProps {
   title?: string;
@@ -29,8 +30,8 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
   rightComponent,
   leftComponent,
   backgroundColor = "transparent",
-  textColor = "#111827", // gray-900
-  backButtonColor = "#7D4DEE", // primaryButton
+  textColor = COLORS.primaryText, // gray-900
+  backButtonColor = COLORS.primary, // primaryButton
   statusBarStyle = "dark",
   centerTitle = false,
 }) => {

@@ -5,6 +5,7 @@ import CustomHeader from "@/components/core/header";
 import Footer from "@/components/auth/CommonFooter";
 import { NameInput, PrivacyText, ProfileButton } from "@/components/auth";
 import { useProfileLogic } from "@/hooks/auth";
+import { COLORS } from "@/util/constant/colors";
 
 const ProfileDetail = () => {
   const {
@@ -31,8 +32,8 @@ const ProfileDetail = () => {
       <CustomHeader
         title="Profile Details"
         showBackButton={false}
-        textColor="#111827" // text-gray-900
-        backButtonColor="#7D4DEE" // text-primaryButton
+        textColor={COLORS.primaryText} // text-gray-900
+        backButtonColor={COLORS.primary} // text-primaryButton
         statusBarStyle="dark"
       />
 

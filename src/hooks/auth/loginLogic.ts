@@ -11,9 +11,12 @@ import {
   validatePhoneNumber,
   validateEmail,
 } from "@/service/validation";
+import { LoginMethod } from "@/@types/login";
 
 export const useLoginLogic = () => {
-  const [loginMethod, setLoginMethod] = useState<"phone" | "email">("phone");
+  const [loginMethod, setLoginMethod] = useState<LoginMethod>(
+    LoginMethod.PHONE
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const phoneForm = useForm<PhoneLoginData>({
@@ -37,7 +40,7 @@ export const useLoginLogic = () => {
     // Validate phone number using service
     const phoneValidation = validatePhoneNumber(data.phoneNumber);
     if (!phoneValidation.success) {
-      Alert.alert("Validation Error", phoneValidation.error);
+      console.error("Validation Error", phoneValidation.error);
       setIsLoading(false);
       return;
     }
@@ -52,11 +55,11 @@ export const useLoginLogic = () => {
         pathname: "/auth/otp",
         params: {
           phoneNumber: phoneValidation.data,
-          method: "phone",
+          method: LoginMethod.PHONE,
         },
       });
     } catch (error) {
-      Alert.alert("Error", "Failed to send OTP. Please try again.");
+      console.error("Error", "Failed to send OTP. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -68,7 +71,7 @@ export const useLoginLogic = () => {
     // Validate email using service
     const emailValidation = validateEmail(data.email);
     if (!emailValidation.success) {
-      Alert.alert("Validation Error", emailValidation.error);
+      console.error("Validation Error", emailValidation.error);
       setIsLoading(false);
       return;
     }
@@ -83,11 +86,11 @@ export const useLoginLogic = () => {
         pathname: "/auth/otp",
         params: {
           email: emailValidation.data,
-          method: "email",
+          method: LoginMethod.EMAIL,
         },
       });
     } catch (error) {
-      Alert.alert("Error", "Failed to send OTP. Please try again.");
+      console.error("Error", "Failed to send OTP. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -96,13 +99,13 @@ export const useLoginLogic = () => {
   const handleGoogleLogin = () => {
     console.log("Continue with Google");
     // Handle Google login logic here
-    Alert.alert("Info", "Google login not implemented yet");
+    console.log("Info", "Google login not implemented yet");
   };
 
   const handleAppleLogin = () => {
     console.log("Continue with Apple");
     // Handle Apple login logic here
-    Alert.alert("Info", "Apple login not implemented yet");
+    console.log("Info", "Apple login not implemented yet");
   };
 
   return {

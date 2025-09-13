@@ -1,5 +1,4 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Dimensions } from "react-native";
 import {
   useAnimatedScrollHandler,
   useSharedValue,
@@ -7,18 +6,7 @@ import {
   interpolate,
   Extrapolation,
 } from "react-native-reanimated";
-
-const { width, height } = Dimensions.get("window");
-
-// Service categories data
-const serviceCategories = [
-  { id: 1, name: "AC Repair", icon: "❄️", color: "#F6F6F6" },
-  { id: 2, name: "Plumbing", icon: "🔧", color: "#F6F6F6" },
-  { id: 3, name: "Electrical", icon: "⚡", color: "#F6F6F6" },
-  { id: 4, name: "Appliance", icon: "📱", color: "#F6F6F6" },
-  { id: 5, name: "Kitchen", icon: "🍳", color: "#F6F6F6" },
-  { id: 6, name: "Carpenter", icon: "🔨", color: "#F6F6F6" },
-];
+import { serviceCategories } from "@/assets/data/home";
 
 export const useHomeLogic = () => {
   const insets = useSafeAreaInsets();
@@ -32,7 +20,8 @@ export const useHomeLogic = () => {
   const PADDING_VERTICAL = 32;
 
   // Minimum height (collapsed) = SafeArea + TopBar + SearchBar + padding
-  const HEADER_MIN_HEIGHT = insets.top + TOP_BAR_HEIGHT + SEARCH_BAR_HEIGHT + 36;
+  const HEADER_MIN_HEIGHT =
+    insets.top + TOP_BAR_HEIGHT + SEARCH_BAR_HEIGHT + 36;
 
   // Maximum height (expanded) = All components
   const HEADER_MAX_HEIGHT =
@@ -148,13 +137,13 @@ export const useHomeLogic = () => {
     // Data
     serviceCategories,
     insets,
-    
+
     // Constants
     TOP_BAR_HEIGHT,
     SEARCH_BAR_HEIGHT,
     POPULAR_SERVICES_HEADER_HEIGHT,
     HEADER_MAX_HEIGHT,
-    
+
     // Event handlers
     handleSearch,
     handleServicePress,
@@ -170,7 +159,7 @@ export const useHomeLogic = () => {
     handleFeaturedViewAllPress,
     handleRepeatServicePress,
     handleSetupPress,
-    
+
     // Animation
     scrollHandler,
     headerAnimatedStyle,

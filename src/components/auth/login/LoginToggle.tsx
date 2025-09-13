@@ -1,9 +1,10 @@
+import { LoginMethod } from "@/@types/login";
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
 interface LoginToggleProps {
-  loginMethod: "phone" | "email";
-  onToggle: (method: "phone" | "email") => void;
+  loginMethod: LoginMethod;
+  onToggle: (method: LoginMethod) => void;
 }
 
 const LoginToggle: React.FC<LoginToggleProps> = ({ loginMethod, onToggle }) => {
@@ -13,7 +14,7 @@ const LoginToggle: React.FC<LoginToggleProps> = ({ loginMethod, onToggle }) => {
         className={`flex-1 py-3 rounded-full ${
           loginMethod === "phone" ? "bg-primaryButton" : "bg-transparent"
         }`}
-        onPress={() => onToggle("phone")}
+        onPress={() => onToggle(LoginMethod.PHONE)}
       >
         <Text
           className={`text-center font-medium ${
@@ -28,7 +29,7 @@ const LoginToggle: React.FC<LoginToggleProps> = ({ loginMethod, onToggle }) => {
         className={`flex-1 py-3 rounded-full ${
           loginMethod === "email" ? "bg-primaryButton" : "bg-transparent"
         }`}
-        onPress={() => onToggle("email")}
+        onPress={() => onToggle(LoginMethod.EMAIL)}
       >
         <Text
           className={`text-center font-medium ${

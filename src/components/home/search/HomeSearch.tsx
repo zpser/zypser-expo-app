@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TextInput } from "react-native";
 import { Ionicon } from "@/components/core/icon";
+import { COLORS } from "@/util/constant/colors";
 
 interface HomeSearchProps {
   placeholder?: string;
@@ -17,12 +18,12 @@ const HomeSearch: React.FC<HomeSearchProps> = ({
     <View className="mb-4" style={{ height }}>
       <View className="flex-row items-center bg-white rounded-full px-4 py-3 h-12">
         <View className="w-8 h-8 bg-primaryButton/10 rounded-full items-center justify-center mr-3">
-          <Ionicon name="search-outline" size={16} color="#7D4DEE" />
+          <Ionicon name="search-outline" size={16} color={COLORS.primary} />
         </View>
         <TextInput
           className="flex-1 text-gray-900 text-sm font-medium"
           placeholder={placeholder}
-          placeholderTextColor="#12162870"
+          placeholderTextColor={COLORS.primaryText}
           onChangeText={onSearch}
         />
       </View>

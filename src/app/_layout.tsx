@@ -6,7 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeToggle } from "@/components/core/toggle";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // Providers
 // import { ThemeProvider } from '@react-navigation/native';
 
@@ -51,63 +51,67 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+const queryClient = new QueryClient();
+
 function RootLayoutNav() {
   const { colorScheme } = useColorScheme();
 
   return (
-    <SafeAreaProvider>
-      <StatusBar
-        style={colorScheme === "dark" ? "light" : "dark"}
-        key={`root-status-bar-${colorScheme === "dark" ? "light" : "dark"}`}
-      />
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        <StatusBar
+          style={colorScheme === "dark" ? "light" : "dark"}
+          key={`root-status-bar-${colorScheme === "dark" ? "light" : "dark"}`}
+        />
 
-      {/* <ThemeProvider value={NAV_THEME[colorScheme]}> */}
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <Stack screenOptions={{ animation: "ios" }}>
-          {/* Entry point - determines initial route */}
-          <Stack.Screen name="index" options={{ headerShown: false }} />
+        {/* <ThemeProvider value={NAV_THEME[colorScheme]}> */}
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Stack screenOptions={{ animation: "ios" }}>
+            {/* Entry point - determines initial route */}
+            <Stack.Screen name="index" options={{ headerShown: false }} />
 
-          {/* Auth group - handles join-our-network, login, otp */}
-          <Stack.Screen name="auth" options={{ headerShown: false }} />
+            {/* Auth group - handles join-our-network, login, otp */}
+            <Stack.Screen name="auth" options={{ headerShown: false }} />
 
-          {/* Onboarding screens */}
-          <Stack.Screen
-            name="welcome"
-            options={{
-              headerShown: false,
-              // Prevent going back to auth
-              gestureEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="profileDetail"
-            options={{
-              headerShown: false,
-              // Prevent going back
-              gestureEnabled: false,
-            }}
-          />
+            {/* Onboarding screens */}
+            <Stack.Screen
+              name="welcome"
+              options={{
+                headerShown: false,
+                // Prevent going back to auth
+                gestureEnabled: false,
+              }}
+            />
+            <Stack.Screen
+              name="profileDetail"
+              options={{
+                headerShown: false,
+                // Prevent going back
+                gestureEnabled: false,
+              }}
+            />
 
-          {/* Main app screens */}
-          <Stack.Screen
-            name="(bottomtab)"
-            options={{
-              headerShown: false,
-              gestureEnabled: false,
-            }}
-          />
+            {/* Main app screens */}
+            <Stack.Screen
+              name="(bottomtab)"
+              options={{
+                headerShown: false,
+                gestureEnabled: false,
+              }}
+            />
 
-          {/* Modal and other screens */}
-          <Stack.Screen
-            name="modal"
-            options={{
-              presentation: "modal",
-              headerShown: false,
-            }}
-          />
-        </Stack>
-      </GestureHandlerRootView>
-      {/* </ThemeProvider> */}
-    </SafeAreaProvider>
+            {/* Modal and other screens */}
+            <Stack.Screen
+              name="modal"
+              options={{
+                presentation: "modal",
+                headerShown: false,
+              }}
+            />
+          </Stack>
+        </GestureHandlerRootView>
+        {/* </ThemeProvider> */}
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }

@@ -6,31 +6,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import CustomSvg from "@/components/core/svg/CustomSvg";
 import CustomFlashList from "@/components/core/list/CustomFlashList";
 import SectionTitleBar from "@/components/SectionTitleBar";
-
-// Sample featured services data
-const featuredServices = [
-  {
-    id: 1,
-    title: "Carpenter Repair",
-    image:
-      "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=300&h=300&fit=crop",
-    svgIcon: "carpenter",
-  },
-  {
-    id: 2,
-    title: "Lawn Mowing",
-    image:
-      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=300&fit=crop",
-    svgIcon: "carpenter",
-  },
-  {
-    id: 3,
-    title: "Handyman",
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop",
-    svgIcon: "carpenter",
-  },
-];
+import { featuredServices } from "@/assets/data/home";
 
 interface FeaturedServicesProps {
   onServicePress?: (serviceId: number) => void;

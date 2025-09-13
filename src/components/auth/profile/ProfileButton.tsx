@@ -1,3 +1,4 @@
+import { COLORS } from "@/util/constant/colors";
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
@@ -22,7 +23,7 @@ const ProfileButton: React.FC<ProfileButtonProps> = ({
       onPress={onPress}
       disabled={!isEnabled}
       style={{
-        backgroundColor: isEnabled ? "#7D4DEE" : "rgba(125, 77, 238, 0.3)",
+        backgroundColor: isEnabled ? COLORS.primary : "rgba(125, 77, 238, 0.3)",
       }}
     >
       <Text

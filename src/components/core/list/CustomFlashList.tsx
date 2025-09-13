@@ -1,19 +1,16 @@
-import React, { forwardRef, useCallback } from 'react';
+import React, { forwardRef, useCallback } from "react";
 import {
   View,
   ViewStyle,
   RefreshControl,
   ActivityIndicator,
-} from 'react-native';
-import {
-  FlashList,
-  FlashListProps,
-  ListRenderItem,
-} from '@shopify/flash-list';
-import { Text } from '@/components/core/text';
+} from "react-native";
+import { FlashList, FlashListProps, ListRenderItem } from "@shopify/flash-list";
+import { Text } from "@/components/core/text";
+import { COLORS } from "@/util/constant/colors";
 
 export interface CustomFlashListProps<T>
-  extends Omit<FlashListProps<T>, 'renderItem' | 'data'> {
+  extends Omit<FlashListProps<T>, "renderItem" | "data"> {
   data: T[] | null | undefined;
   renderItem: ListRenderItem<T>;
 
@@ -53,12 +50,12 @@ function CustomFlashListComponent<T>(
     loadingMore = false,
 
     emptyComponent,
-    emptyText = 'No items found',
+    emptyText = "No items found",
     emptyStyle,
     emptyClassName,
 
     errorComponent,
-    errorText = 'Something went wrong',
+    errorText = "Something went wrong",
     errorStyle,
     errorClassName,
     hasError = false,
@@ -96,16 +93,16 @@ function CustomFlashListComponent<T>(
   ) => {
     if (!component) return null;
     if (React.isValidElement(component)) return component;
-    if (typeof component === 'function') return React.createElement(component);
+    if (typeof component === "function") return React.createElement(component);
     return null;
   };
 
   const renderLoadingComponent = () =>
     renderCustom(loadingComponent) ?? (
       <View
-        className={`flex-1 justify-center items-center py-8 ${loadingClassName || ''}`}
+        className={`flex-1 justify-center items-center py-8 ${loadingClassName || ""}`}
       >
-        <ActivityIndicator size="large" color="#1A48A3" />
+        <ActivityIndicator size="large" color={COLORS.primary} />
         <Text variant="body" className="text-gray-500 mt-2">
           Loading...
         </Text>
@@ -117,7 +114,7 @@ function CustomFlashListComponent<T>(
     return (
       renderCustom(emptyComponent) ?? (
         <View
-          className={`flex-1 justify-center items-center py-8 ${emptyClassName || ''}`}
+          className={`flex-1 justify-center items-center py-8 ${emptyClassName || ""}`}
           style={emptyStyle}
         >
           <Text variant="body" className="text-gray-500 text-center">
@@ -131,7 +128,7 @@ function CustomFlashListComponent<T>(
   const renderErrorComponent = () =>
     renderCustom(errorComponent) ?? (
       <View
-        className={`flex-1 justify-center items-center py-8 ${errorClassName || ''}`}
+        className={`flex-1 justify-center items-center py-8 ${errorClassName || ""}`}
         style={errorStyle}
       >
         <Text variant="body" className="text-red-500 text-center">
@@ -145,7 +142,7 @@ function CustomFlashListComponent<T>(
     return (
       renderCustom(loadingMoreComponent) ?? (
         <View className="py-4 justify-center items-center">
-          <ActivityIndicator size="small" color="#1A48A3" />
+          <ActivityIndicator size="small" color={COLORS.primary} />
         </View>
       )
     );
@@ -193,8 +190,8 @@ function CustomFlashListComponent<T>(
             <RefreshControl
               refreshing={refreshing || false}
               onRefresh={handleRefresh}
-              colors={['#1A48A3']}
-              tintColor="#1A48A3"
+              colors={[COLORS.primary]}
+              tintColor={COLORS.primary}
             />
           ) : undefined
         }
@@ -210,6 +207,6 @@ const CustomFlashList = forwardRef(CustomFlashListComponent) as <T>(
   props: CustomFlashListProps<T> & { ref?: React.Ref<FlashList<T>> }
 ) => React.ReactElement;
 
-(CustomFlashList as any).displayName = 'CustomFlashList';
+(CustomFlashList as any).displayName = "CustomFlashList";
 
 export default CustomFlashList;

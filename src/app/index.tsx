@@ -7,16 +7,17 @@ import {
   PROFILE_COMPLETED,
   FIRST_LOGIN_DATE,
 } from "@/service/storageHandler";
+import { COLORS } from "@/util/constant/colors";
 
 const WELCOME_SCREEN_DAYS = 10;
 
 export default function IndexScreen() {
-    useFocusEffect(
-        useCallback(() => {
-          router.replace("/(bottomtab)/home");
-          // checkAndNavigate();
-        }, [])
-      );
+  useFocusEffect(
+    useCallback(() => {
+      // router.replace("/(bottomtab)/home");
+      checkAndNavigate();
+    }, [])
+  );
   const checkAndNavigate = async () => {
     try {
       // Get all necessary data from storage
@@ -72,7 +73,7 @@ export default function IndexScreen() {
 
   return (
     <View className="flex-1 justify-center items-center bg-white">
-      <ActivityIndicator size="large" color="#1A48A3" />
+      <ActivityIndicator size="large" color={COLORS.primary} />
     </View>
   );
 }

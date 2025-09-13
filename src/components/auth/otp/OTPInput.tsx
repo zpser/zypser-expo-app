@@ -1,3 +1,4 @@
+import { COLORS } from "@/util/constant/colors";
 import React, { useRef, forwardRef, useImperativeHandle } from "react";
 import { View, Text, TextInput, Animated } from "react-native";
 
@@ -51,14 +52,16 @@ const OTPInput = forwardRef<OTPInputRef, OTPInputProps>(
               style={{
                 borderColor:
                   activeIndex === index || value
-                    ? "#7D4DEE"
+                    ? COLORS.primary
                     : "rgba(125, 77, 238, 0.2)",
                 backgroundColor:
                   activeIndex === index || value
-                    ? "#FFFFFF"
+                    ? COLORS.white
                     : "rgba(255, 255, 255, 0.2)",
                 shadowColor:
-                  activeIndex === index || value ? "#7D4DEE" : "transparent",
+                  activeIndex === index || value
+                    ? COLORS.primary
+                    : "transparent",
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.1,
                 shadowRadius: 4,

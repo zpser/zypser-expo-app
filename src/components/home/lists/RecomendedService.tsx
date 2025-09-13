@@ -1,53 +1,15 @@
 import React from "react";
-import { View, ImageBackground, Dimensions } from "react-native";
+import { View, ImageBackground } from "react-native";
 import { TouchableOpacity } from "@/components/core/button/touchable-opacity";
 import { Text } from "@/components/core/text";
 import { Ionicon } from "@/components/core/icon";
 import CustomFlashList from "@/components/core/list/CustomFlashList";
 import SectionTitleBar from "@/components/SectionTitleBar";
-
-const { width } = Dimensions.get("window");
-
-// Service interface
-interface Service {
-  id: number;
-  title: string;
-  image: string;
-  rating: number;
-  reviewCount: string;
-  price: number;
-}
+import { Service } from "@/@types/home";
+import { recommendedServices } from "@/assets/data/home";
+import { COLORS } from "@/util/constant/colors";
 
 // Sample data
-const recommendedServices: Service[] = [
-  {
-    id: 1,
-    title: "Switch Socket Repair",
-    image:
-      "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=300&h=300&fit=crop",
-    rating: 4.8,
-    reviewCount: "12.3k",
-    price: 49,
-  },
-  {
-    id: 3,
-    title: "Tap Repair",
-    image:
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&h=300&fit=crop",
-    rating: 4.8,
-    reviewCount: "12.3k",
-    price: 49,
-  },
-  {
-    id: 4,
-    title: "AC Service",
-    image:
-      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=300&h=300&fit=crop",
-    rating: 4.9,
-    reviewCount: "8.5k",
-    price: 65,
-  },
-];
 
 interface RecommendedForYouProps {
   title?: string;
@@ -90,7 +52,7 @@ const RecommendedForYou: React.FC<RecommendedForYouProps> = ({
               className="absolute bottom-2 right-2 w-6 h-6 bg-white rounded-full items-center justify-center shadow-lg"
               onPress={() => handleAddPress(item.id)}
             >
-              <Ionicon name="add" size={12} color="#7D4DEE" />
+              <Ionicon name="add" size={12} color={COLORS.primary} />
             </TouchableOpacity>
           </ImageBackground>
         </View>

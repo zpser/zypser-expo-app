@@ -41,7 +41,7 @@ const GrowYourBusiness: React.FC = () => {
             }}
           >
             <View className="flex-row items-start">
-              <Text className="text-[#7D4DEE] italic font-bold text-[12px] mr-2 mt-[2px]">
+              <Text className="text-primaryButton italic font-bold text-[12px] mr-2 mt-[2px]">
                 zypser
               </Text>
 
@@ -49,7 +49,7 @@ const GrowYourBusiness: React.FC = () => {
                 <View className="flex-row items-baseline justify-between">
                   <Text className="font-semibold text-[12px] leading-[15.37px]">
                     +120 Jobs ready Avg. Pay{" "}
-                    <Text className="text-[#7D4DEE] font-semibold text-[12px] leading-[15.37px]">
+                    <Text className="text-primaryButton font-semibold text-[12px] leading-[15.37px]">
                       $500
                     </Text>
                   </Text>

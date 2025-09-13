@@ -1,10 +1,11 @@
-import React from 'react';
-import { Tabs } from 'expo-router';
-import { View } from 'react-native';
-import { useColorScheme } from 'nativewind';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicon } from '@/components/core/icon';
-import { Text } from '@/components/core/text';
+import React from "react";
+import { Tabs } from "expo-router";
+import { View } from "react-native";
+import { useColorScheme } from "nativewind";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Ionicon } from "@/components/core/icon";
+import { Text } from "@/components/core/text";
+import { COLORS } from "@/util/constant/colors";
 
 export default function TabsLayout() {
   const { colorScheme } = useColorScheme();
@@ -15,9 +16,9 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#FCFCFC',
+          backgroundColor: "#FCFCFC",
           borderTopWidth: 1,
-          borderTopColor: 'rgba(18, 22, 40, 0.08)',
+          borderTopColor: "rgba(18, 22, 40, 0.08)",
           height: 66 + insets.bottom, // Add bottom safe area
           paddingTop: 12,
           paddingBottom: Math.max(insets.bottom, 12), // Ensure minimum padding
@@ -28,14 +29,14 @@ export default function TabsLayout() {
           shadowOffset: { height: 0, width: 0 },
           shadowRadius: 0,
           // Position at bottom
-          position: 'absolute',
+          position: "absolute",
           bottom: 0,
           left: 0,
           right: 0,
         },
         tabBarShowLabel: false,
-        tabBarActiveTintColor: '#7D4DEE',
-        tabBarInactiveTintColor: '#121628',
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarInactiveTintColor: COLORS.primaryText,
         // Hide tab bar background to use custom styling
         tabBarBackground: () => null,
       }}
@@ -43,7 +44,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Home',
+          title: "Home",
           tabBarIcon: ({ focused }) => (
             <CustomTabItem
               iconName="home-outline"
@@ -54,11 +55,11 @@ export default function TabsLayout() {
           ),
         }}
       />
-      
+
       <Tabs.Screen
         name="browse"
         options={{
-          title: 'Browse',
+          title: "Browse",
           tabBarIcon: ({ focused }) => (
             <CustomTabItem
               iconName="search-outline"
@@ -69,11 +70,11 @@ export default function TabsLayout() {
           ),
         }}
       />
-      
+
       <Tabs.Screen
         name="orders"
         options={{
-          title: 'Orders',
+          title: "Orders",
           tabBarIcon: ({ focused }) => (
             <CustomTabItem
               iconName="receipt-outline"
@@ -84,11 +85,11 @@ export default function TabsLayout() {
           ),
         }}
       />
-      
+
       <Tabs.Screen
         name="account"
         options={{
-          title: 'Account',
+          title: "Account",
           tabBarIcon: ({ focused }) => (
             <CustomTabItem
               iconName="person-outline"
@@ -110,8 +111,8 @@ const CustomTabItem = ({
   label,
   focused,
 }: {
-  iconName: React.ComponentProps<typeof Ionicon>['name'];
-  activeIconName?: React.ComponentProps<typeof Ionicon>['name'];
+  iconName: React.ComponentProps<typeof Ionicon>["name"];
+  activeIconName?: React.ComponentProps<typeof Ionicon>["name"];
   label: string;
   focused: boolean;
 }) => {
@@ -122,17 +123,17 @@ const CustomTabItem = ({
         <Ionicon
           name={focused && activeIconName ? activeIconName : iconName}
           size={24}
-          color={focused ? '#7D4DEE' : '#121628'}
+          color={focused ? COLORS.primary : COLORS.primaryText}
         />
       </View>
-      
+
       {/* Label - Using custom Text component with className */}
       <Text
         variant="caption2"
         className={`text-center ${
-          focused 
-            ? 'text-[#7D4DEE] font-bold' 
-            : 'text-[#121628] font-normal'
+          focused
+            ? "text-primaryButton font-bold"
+            : "text-[#121628] font-normal"
         }`}
       >
         {label}

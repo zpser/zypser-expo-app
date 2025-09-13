@@ -127,7 +127,7 @@ export const useOTPLogic = () => {
     // Validate OTP using service
     const otpValidation = validateOTP(data.otp);
     if (!otpValidation.success) {
-      Alert.alert("Validation Error", otpValidation.error);
+      console.error("Validation Error", otpValidation.error);
       setIsLoading(false);
       return;
     }
@@ -144,7 +144,7 @@ export const useOTPLogic = () => {
       // Navigate to next screen on success
       router.push("/(tabs)");
     } catch (error) {
-      Alert.alert("Error", "OTP verification failed. Please try again.");
+      console.error("Error", "OTP verification failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -163,9 +163,9 @@ export const useOTPLogic = () => {
 
         setResendTimer(10);
         setCanResend(false);
-        Alert.alert("Success", "OTP has been resent successfully");
+        console.log("Success", "OTP has been resent successfully");
       } catch (error) {
-        Alert.alert("Error", "Failed to resend OTP. Please try again.");
+        console.error("Error", "Failed to resend OTP. Please try again.");
       } finally {
         setIsLoading(false);
       }
