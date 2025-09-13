@@ -20,27 +20,32 @@
  *
  */
 
-import { View } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const SafeAreaView = ({
   children,
   paddingX = 16,
+  style,
 }: Readonly<{
   children: React.ReactNode;
   className?: string;
   paddingX?: number;
+  style?: StyleProp<ViewStyle> | undefined;
 }>) => {
   const insets = useSafeAreaInsets();
 
   return (
     <View
-      style={{
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-        paddingLeft: insets.left + paddingX / 2,
-        paddingRight: insets.right + paddingX / 2,
-      }}
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left + paddingX / 2,
+          paddingRight: insets.right + paddingX / 2,
+        },
+        style,
+      ]}
     >
       {children}
     </View>

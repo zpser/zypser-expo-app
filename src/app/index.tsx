@@ -14,8 +14,9 @@ const WELCOME_SCREEN_DAYS = 10;
 export default function IndexScreen() {
   useFocusEffect(
     useCallback(() => {
-      // router.replace("/(bottomtab)/home");
-      checkAndNavigate();
+      router.replace("/(bottomtab)/home");
+      // router.replace("/auth/login");
+      // checkAndNavigate();
     }, [])
   );
   const checkAndNavigate = async () => {
