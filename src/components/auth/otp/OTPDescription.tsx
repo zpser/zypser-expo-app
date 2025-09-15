@@ -14,11 +14,10 @@ const OTPDescription: React.FC<OTPDescriptionProps> = ({
 }) => {
   return (
     <View>
-      <Text className="text-gray-600 text-base mb-2 leading-6">
-        We want to make sure your account is secure. Enter the 6-digit
-        verification code we sent to
+      <Text className="font-medium text-base mb-1 leading-6">
+        Enter 6-digit code sent to you at
       </Text>
-      <Text className="text-primaryButton font-medium text-base mb-8">
+      <Text className="text-primaryButton font-medium text-base mb-4">
         {method === "phone" ? phoneNumber : email}
       </Text>
     </View>

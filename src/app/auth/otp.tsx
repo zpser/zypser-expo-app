@@ -18,6 +18,9 @@ import {
 } from "@/components/auth";
 import { useOTPLogic } from "@/hooks/auth";
 import { COLORS } from "@/util/constant/colors";
+import { TouchableOpacity } from "@/components/core/button";
+import { LoginMethod } from "@/@types/login";
+import GradientButton from "@/components/auth/GradientButton";
 
 const OTP = () => {
   const {
@@ -45,6 +48,7 @@ const OTP = () => {
     handleInputBlur,
     onSubmit,
     handleResendCode,
+    onChangeNumber,
   } = useOTPLogic();
 
   return (
@@ -54,7 +58,7 @@ const OTP = () => {
     >
       {/* Custom Header */}
       <CustomHeader
-        title="Enter OTP"
+        title=""
         showBackButton={true}
         textColor={COLORS.primaryText} // text-gray-900
         backButtonColor={COLORS.primary} // text-primaryButton
@@ -75,9 +79,13 @@ const OTP = () => {
             />
 
             {/* Title */}
-            <Text className="text-xl font-semibold text-gray-900 mb-8">
-              Enter 6 Digit Code
-            </Text>
+            <TouchableOpacity onPress={onChangeNumber}>
+              <Text className="text-sm underline font-normal mb-8">
+                {method == LoginMethod.PHONE
+                  ? "Change your mobile number?"
+                  : " Change your email?"}
+              </Text>
+            </TouchableOpacity>
 
             {/* OTP Input Fields */}
             <OTPInput
@@ -111,17 +119,23 @@ const OTP = () => {
               onResend={handleResendCode}
             />
 
+            {/* <Text className="text-xs text-gray-500">
+              Debug errors: {JSON.stringify(form.formState.errors)}
+            </Text> */}
             {/* Continue Button */}
-            <OTPButton
-              onPress={form.handleSubmit(onSubmit)}
-              otpLength={otpValues.join("").length}
-              isLoading={isLoading}
-            />
+            <View
+              style={{
+                flex: 1,
+                alignSelf: "flex-end",
+              }}
+            >
+              <GradientButton
+                title={"Next"}
+                onPress={form.handleSubmit(onSubmit)}
+              />
+            </View>
           </View>
         </ScrollView>
-
-        {/* Footer */}
-        <Footer />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

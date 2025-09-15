@@ -88,3 +88,44 @@ export const CANCELED_ORDERS: OrderItem[] = [
     iconUrl: "https://cdn-icons-png.flaticon.com/512/2738/2738674.png",
   },
 ];
+export const MOCK_ORDER: OrderItem & {
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  instructionNote?: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  items: Array<{ name: string; price: number }>;
+  subtotal: number;
+  shipping: number;
+  tax: number;
+  total: number;
+} = {
+  id: "1",
+  title: "AC repair & maintenance",
+  date: "Jul 28",
+  time: "10:00 AM",
+  status: OrderStatus.Scheduled,
+  amount: "$329.00",
+  iconUrl:
+    "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=300&fit=crop",
+  customerName: "Liam Johnson",
+  customerEmail: "liam@acme.com",
+  customerPhone: "+1 234 567 890",
+  instructionNote:
+    "Please kindly call me when you arrive at my location for parking instruction you need to park you vehicle in my slot. Thanks",
+  address: "1234 Main St.",
+  city: "Anytown",
+  state: "CA",
+  zipCode: "12345",
+  items: [
+    { name: "AC repair service", price: 250.0 },
+    { name: "AC filters", price: 49.0 },
+  ],
+  subtotal: 299.0,
+  shipping: 5.0,
+  tax: 25.0,
+  total: 329.0,
+};

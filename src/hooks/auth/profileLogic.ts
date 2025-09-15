@@ -37,7 +37,7 @@ export const useProfileLogic = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       // Navigate to next screen
-      router.push("/(tabs)");
+      router.push("/fetchlocation");
     } catch (error) {
       console.error("Profile save error:", error);
     } finally {

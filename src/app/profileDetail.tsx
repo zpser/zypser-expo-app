@@ -6,6 +6,7 @@ import Footer from "@/components/auth/CommonFooter";
 import { NameInput, PrivacyText, ProfileButton } from "@/components/auth";
 import { useProfileLogic } from "@/hooks/auth";
 import { COLORS } from "@/util/constant/colors";
+import GradientButton from "@/components/auth/GradientButton";
 
 const ProfileDetail = () => {
   const {
@@ -30,7 +31,7 @@ const ProfileDetail = () => {
     >
       {/* Custom Header */}
       <CustomHeader
-        title="Profile Details"
+        title="Your are only one step away!"
         showBackButton={false}
         textColor={COLORS.primaryText} // text-gray-900
         backButtonColor={COLORS.primary} // text-primaryButton
@@ -59,15 +60,18 @@ const ProfileDetail = () => {
             <PrivacyText isFocused={isFocused} />
 
             {/* Continue Button */}
-            <ProfileButton
-              onPress={form.handleSubmit(onSubmit)}
-              nameValue={nameValue}
-              isLoading={isLoading}
-            />
+            <View
+              style={{
+                flex: 1,
+                alignSelf: "flex-end",
+              }}
+            >
+              <GradientButton
+                title={"Next"}
+                onPress={form.handleSubmit(onSubmit)}
+              />
+            </View>
           </View>
-
-          {/* Footer */}
-          <Footer />
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

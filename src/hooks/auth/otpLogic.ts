@@ -9,6 +9,7 @@ import {
   validateOTP,
 } from "@/service/validation";
 import { OTPInputRef } from "@/components/auth";
+import { LoginMethod } from "@/@types/login";
 
 type OTPFormData = OTPVerificationData;
 
@@ -16,7 +17,7 @@ export const useOTPLogic = () => {
   const params = useLocalSearchParams();
   const phoneNumber = params.phoneNumber as string;
   const email = params.email as string;
-  const method = params.method as string;
+  const method = params.method as LoginMethod;
 
   const [otpValues, setOtpValues] = useState<string[]>([
     "",
@@ -42,8 +43,8 @@ export const useOTPLogic = () => {
     resolver: zodResolver(otpVerificationSchema),
     defaultValues: {
       otp: "",
-      phoneNumber: phoneNumber || "",
-      email: email || "",
+      ...(phoneNumber ? { phoneNumber } : {}),
+      ...(email ? { email } : {}),
     },
   });
 
@@ -122,6 +123,8 @@ export const useOTPLogic = () => {
   };
 
   const onSubmit = async (data: OTPFormData) => {
+    console.log("1");
+
     setIsLoading(true);
 
     // Validate OTP using service
@@ -139,10 +142,10 @@ export const useOTPLogic = () => {
       console.log("Phone:", phoneNumber);
       console.log("Email:", email);
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Navigate to next screen on success
-      router.push("/(tabs)");
+      router.push("/profileDetail");
     } catch (error) {
       console.error("Error", "OTP verification failed. Please try again.");
     } finally {
@@ -171,6 +174,9 @@ export const useOTPLogic = () => {
       }
     }
   };
+  const onChangeNumber = () => {
+    router.back();
+  };
 
   return {
     // State
@@ -197,5 +203,6 @@ export const useOTPLogic = () => {
     handleInputBlur,
     onSubmit,
     handleResendCode,
+    onChangeNumber,
   };
 };

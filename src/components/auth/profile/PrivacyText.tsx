@@ -8,7 +8,7 @@ interface PrivacyTextProps {
 const PrivacyText: React.FC<PrivacyTextProps> = ({ isFocused }) => {
   return (
     <View className="mb-8">
-      <Text className="text-gray-600 text-sm leading-6">
+      <Text className="text-gray-600 text-sm ">
         {isFocused ? (
           <>
             With <Text className="text-primaryButton font-medium">zypser</Text>{" "}

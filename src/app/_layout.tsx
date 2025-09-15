@@ -70,6 +70,13 @@ function RootLayoutNav() {
             {/* Entry point - determines initial route */}
             <Stack.Screen name="index" options={{ headerShown: false }} />
 
+            <Stack.Screen name="splash" options={{ headerShown: false }} />
+
+            <Stack.Screen
+              name="fetchlocation"
+              options={{ headerShown: false }}
+            />
+
             {/* Auth group - handles join-our-network, login, otp */}
             <Stack.Screen name="auth" options={{ headerShown: false }} />
 

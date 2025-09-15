@@ -25,7 +25,9 @@ const NameInput: React.FC<NameInputProps> = ({
 }) => {
   return (
     <View className="mb-8">
-      <Text className="text-lg font-semibold text-gray-900 mb-3">Name</Text>
+      <Text className="text-base font-semibold text-gray-900 mb-3">
+        Full Name
+      </Text>
 
       <Controller
         control={control}

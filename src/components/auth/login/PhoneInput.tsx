@@ -36,8 +36,8 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, errors }) => {
   const [showCountryPicker, setShowCountryPicker] = useState(false); // Add this state
 
   return (
-    <View>
-      <Text className="text-lg font-semibold text-gray-900 mb-4">
+    <View className="mt-8 mb-2">
+      <Text className="text-base font-semibold text-gray-900 mb-2">
         Phone Number
       </Text>
 
@@ -46,7 +46,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, errors }) => {
           className="flex-row items-center px-4 py-4 border-r border-gray-200"
           onPress={() => setShowCountryPicker(true)} // Update this
         >
-          <Text className="text-2xl mr-2">{selectedCountry.flag}</Text>
+          <Text className="text-xl mr-2">{selectedCountry.flag}</Text>
           <Text className="text-gray-700 font-medium">
             {selectedCountry.dialCode}
           </Text>
@@ -78,12 +78,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, errors }) => {
         </Text>
       )}
 
-      <Text className="text-sm text-gray-500 mb-8 leading-5">
-        We will send a text with a verification code. Message and data rates may
-        apply. By continuing, you agree to our{" "}
-        <Text className="text-primaryButton">Terms of Service</Text> &{" "}
-        <Text className="text-primaryButton">Privacy Policy</Text>.
-      </Text>
+      {/* Policy text moved to screen bottom */}
 
       {/* Country Picker Modal */}
       <Modal

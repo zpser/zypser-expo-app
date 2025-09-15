@@ -4,9 +4,9 @@ import { z } from "zod";
 export const phoneSchema = z
   .string()
   .min(1, "Phone number is required")
-  .regex(/^\+?[1-9]\d{1,14}$/, "Please enter a valid phone number")
+  // Accept local numbers too; we'll normalize by prefixing '+'
+  .regex(/^\+?\d{6,15}$/, "Please enter a valid phone number")
   .transform((val) => {
-    // Normalize phone number format
     const cleaned = val.replace(/\s+/g, "").replace(/[^\d+]/g, "");
     return cleaned.startsWith("+") ? cleaned : `+${cleaned}`;
   });
@@ -41,12 +41,16 @@ export const emailLoginSchema = z.object({
   email: emailSchema,
 });
 
-export const otpVerificationSchema = z.object({
-  otp: otpSchema,
-  phoneNumber: phoneSchema.optional(),
-  email: emailSchema.optional(),
-});
-
+export const otpVerificationSchema = z
+  .object({
+    otp: otpSchema,
+    phoneNumber: phoneSchema.optional(),
+    email: emailSchema.optional(),
+  })
+  .refine((data) => data.phoneNumber || data.email, {
+    message: "Either phone number or email is required",
+    path: ["phoneNumber"], // you can also set ["email"]
+  });
 // Type exports
 export type PhoneLoginData = z.infer<typeof phoneLoginSchema>;
 export type EmailLoginData = z.infer<typeof emailLoginSchema>;

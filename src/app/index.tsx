@@ -1,21 +1,23 @@
-import { useCallback, useEffect } from "react";
-import { View, ActivityIndicator } from "react-native";
-import { router, useFocusEffect } from "expo-router";
 import {
+  FIRST_LOGIN_DATE,
   getStorageData,
   IS_LOGIN,
   PROFILE_COMPLETED,
-  FIRST_LOGIN_DATE,
 } from "@/service/storageHandler";
 import { COLORS } from "@/util/constant/colors";
+import { router, useFocusEffect } from "expo-router";
+import { useCallback } from "react";
+import { ActivityIndicator, View } from "react-native";
 
 const WELCOME_SCREEN_DAYS = 10;
 
 export default function IndexScreen() {
   useFocusEffect(
     useCallback(() => {
-      router.replace("/(bottomtab)/home");
+      // router.replace("/splash");
+      // router.replace("/(bottomtab)/orders/1");
       // router.replace("/auth/login");
+      router.push("/(bottomtab)/home");
       // checkAndNavigate();
     }, [])
   );

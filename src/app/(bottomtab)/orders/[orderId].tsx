@@ -1,30 +1,63 @@
-import CustomHeader from "@/components/core/header";
-import { COLORS } from "@/util/constant/colors";
-import { View, Text, ScrollView } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+// app/orders/[orderId].tsx
+import React, { useMemo } from "react";
+import { View } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
+import { COLORS } from "@/util/constant/colors";
+import { OrderStatus, OrderItem } from "@/@types/order";
+import { OrderHeader, OrderContent } from "@/components/orders/orderdetail";
+import { MOCK_ORDER } from "@/assets/data/order";
+
+// Mock order data (same as before)
 
 export default function OrderDetailScreen() {
   const { orderId } = useLocalSearchParams();
 
-  return (
-    <SafeAreaView className="flex-1 bg-white">
-      <CustomHeader
-        title={`Order #${orderId}`}
-        backgroundColor="white"
-        textColor={COLORS.primaryText}
-        statusBarStyle="dark"
-        showBackButton={true}
-        onBackPress={() => router.back()}
-      />
+  const order = useMemo(() => {
+    return MOCK_ORDER;
+  }, [orderId]);
 
-      <ScrollView className="flex-1">
-        <View className="p-4">
-          <Text className="text-xl font-semibold">Order Details</Text>
-          <Text>Order ID: {orderId}</Text>
-          {/* Add your order detail content here */}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+  const handleReorderService = () => {
+    console.log("Reorder service");
+  };
+
+  const handleGetHelp = () => {
+    console.log("Get help");
+  };
+
+  const handleReportIssue = () => {
+    console.log("Report issue");
+  };
+
+  const handleBackPress = () => {
+    router.back();
+  };
+
+  return (
+    <View className="flex-1" style={{ backgroundColor: COLORS.white }}>
+      <OrderHeader imageUrl={order.iconUrl} onBackPress={handleBackPress} />
+
+      <OrderContent
+        title={order.title}
+        date={order.date}
+        time={order.time}
+        status={order.status}
+        instructionNote={order.instructionNote}
+        customerName={order.customerName}
+        customerEmail={order.customerEmail}
+        customerPhone={order.customerPhone}
+        address={order.address}
+        city={order.city}
+        state={order.state}
+        zipCode={order.zipCode}
+        items={order.items}
+        subtotal={order.subtotal}
+        shipping={order.shipping}
+        tax={order.tax}
+        total={order.total}
+        onReorderService={handleReorderService}
+        onGetHelp={handleGetHelp}
+        onReportIssue={handleReportIssue}
+      />
+    </View>
   );
 }

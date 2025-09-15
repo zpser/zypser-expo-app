@@ -10,8 +10,8 @@ interface EmailInputProps {
 
 const EmailInput: React.FC<EmailInputProps> = ({ control, errors }) => {
   return (
-    <View>
-      <Text className="text-lg font-semibold text-gray-900 mb-4">
+    <View className="mt-8 mb-2">
+      <Text className="text-base font-semibold text-gray-900 mb-2">
         Email Address
       </Text>
 
@@ -40,11 +40,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ control, errors }) => {
         </Text>
       )}
 
-      <Text className="text-sm text-gray-500 mb-8 leading-5">
-        We will send an email with a verification link. By continuing, you agree
-        to our <Text className="text-primaryButton">Terms of Service</Text> &{" "}
-        <Text className="text-primaryButton">Privacy Policy</Text>.
-      </Text>
+      {/* Policy text moved to screen bottom */}
     </View>
   );
 };

@@ -3,15 +3,12 @@ import { View, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomHeader from "@/components/core/header";
 import Footer from "@/components/auth/CommonFooter";
-import {
-  LoginToggle,
-  PhoneInput,
-  EmailInput,
-  ContinueButton,
-  SocialLogin,
-} from "@/components/auth";
+import { Text } from "@/components/core/text";
+import { PhoneInput, EmailInput, SocialLogin } from "@/components/auth";
 import { useLoginLogic } from "@/hooks/auth";
+import { LoginMethod } from "@/@types/login";
 import { COLORS } from "@/util/constant/colors";
+import GradientButton from "@/components/auth/GradientButton";
 
 const Login = () => {
   const {
@@ -38,8 +35,7 @@ const Login = () => {
     >
       {/* Custom Header */}
       <CustomHeader
-        title="Login"
-        showBackButton={true}
+        title=""
         textColor={COLORS.primaryText} // text-gray-900
         backButtonColor={COLORS.primary} // text-primaryButton
         statusBarStyle="dark"
@@ -50,47 +46,77 @@ const Login = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-          <View className="px-6 pt-6">
-            {/* Toggle Buttons */}
-            <LoginToggle loginMethod={loginMethod} onToggle={setLoginMethod} />
-
-            {/* Phone Form */}
-            {loginMethod === "phone" && (
-              <View>
-                <PhoneInput
-                  control={phoneForm.control}
-                  errors={phoneForm.formState.errors}
-                />
-                <ContinueButton
-                  onPress={phoneForm.handleSubmit(onPhoneSubmit)}
-                  isLoading={isLoading}
-                />
+          <View className="px-6 mb-4">
+            <View className="self-center gap-3">
+              <View className="bg-primaryButton self-center py-5 px-2 rounded-xl">
+                <Text
+                  variant={"body"}
+                  className="text-sm font-bold italic text-white"
+                >
+                  zypser
+                </Text>
               </View>
+              <Text variant={"title2"} className=" font-medium">
+                Get started with Zypser
+              </Text>
+            </View>
+            {/* Phone Form */}
+            {loginMethod === LoginMethod.PHONE && (
+              <PhoneInput
+                control={phoneForm.control}
+                errors={phoneForm.formState.errors}
+              />
             )}
 
             {/* Email Form */}
-            {loginMethod === "email" && (
-              <View>
-                <EmailInput
-                  control={emailForm.control}
-                  errors={emailForm.formState.errors}
-                />
-                <ContinueButton
-                  onPress={emailForm.handleSubmit(onEmailSubmit)}
-                  isLoading={isLoading}
-                />
-              </View>
+            {loginMethod === LoginMethod.EMAIL && (
+              <EmailInput
+                control={emailForm.control}
+                errors={emailForm.formState.errors}
+              />
             )}
+            <GradientButton
+              title={isLoading ? "Sending..." : "Continue"}
+              onPress={
+                loginMethod === LoginMethod.PHONE
+                  ? phoneForm.handleSubmit(onPhoneSubmit)
+                  : emailForm.handleSubmit(onEmailSubmit)
+              }
+            />
 
             {/* Social Login */}
             <SocialLogin
               onGooglePress={handleGoogleLogin}
               onApplePress={handleAppleLogin}
+              loginMethod={loginMethod}
+              onToggleMethod={setLoginMethod}
             />
+
+            {/* Privacy / Terms below social buttons */}
+            <View className="mt-4 mb-10">
+              <View className="flex-row items-center mb-6">
+                <View className="flex-1 h-px bg-gray-300" />
+                <View className="flex-1 h-px bg-gray-300" />
+              </View>
+              <View>
+                <Text className="text-sm text-gray-500 leading-5">
+                  We will send a text with a verification code. Message and data
+                  rates may apply. By continuing, you agree to our
+                  <Text className="text-primaryButton text-sm">
+                    {" "}
+                    Terms of Service
+                  </Text>
+                  &
+                  <Text className="text-primaryButton text-sm">
+                    {" "}
+                    Privacy Policy
+                  </Text>
+                  .
+                </Text>
+              </View>
+            </View>
           </View>
         </ScrollView>
-
-        <Footer />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
