@@ -9,6 +9,7 @@ import ClockSvg from "@/assets/images/clock.svg";
 import RepeartServiceSvg from "@/assets/images/repeatservice.svg";
 import SplashSvg from "@/assets/images/splash.svg";
 import MapSvg from "@/assets/images/map.svg";
+import WorkerSvg from "@/assets/images/worker.svg";
 
 export const IMAGES = {
   acrepair: AcrepairSvg,
@@ -21,4 +22,5 @@ export const IMAGES = {
   clock: ClockSvg,
   splash: SplashSvg,
   map: MapSvg,
+  worker: WorkerSvg,
 };

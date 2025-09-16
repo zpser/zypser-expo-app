@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StatusBar } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { View, StatusBar, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated from "react-native-reanimated";
 import RecommendedForYou from "@/components/home/lists/RecomendedService";
@@ -10,12 +10,22 @@ import HomeSearch from "@/components/home/search/HomeSearch";
 import PopularService from "@/components/home/lists/PopularService";
 import HomeHeader from "@/components/home/header/Header";
 import { useHomeLogic } from "@/hooks/home/homeLogic";
+import ServiceDetailBottomSheet from "@/components/home/sheet/ServiceDetailBottomSheet";
+import { CustomBottomSheetRef } from "@/components/core/bottomsheet/CustomBottomSheet";
+import { faqs, processSteps, serviceDataa } from "@/assets/data/bottomsheet";
 
 const Home = () => {
+  const serviceBottomSheetRef = useRef<CustomBottomSheetRef>(null);
+
   const {
     // Data
     serviceCategories,
     insets,
+
+    // Cart and sheet controls
+    cartQuantity,
+    handleQuantityChange,
+    openServiceDetail,
 
     // Constants
     TOP_BAR_HEIGHT,
@@ -44,6 +54,22 @@ const Home = () => {
     headerAnimatedStyle,
     popularServicesAnimatedStyle,
   } = useHomeLogic();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      openServiceDetail(serviceBottomSheetRef.current);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [openServiceDetail]);
+
+  const handleAddService = () => {
+    // Add service logic
+  };
+
+  const handleBookNow = () => {
+    serviceBottomSheetRef.current?.close();
+    // Navigate to booking screen
+  };
 
   return (
     <View className="flex-1 bg-allStone">
@@ -118,7 +144,6 @@ const Home = () => {
         <View className="bg-white">
           {/* Recommended Services */}
           <RecommendedForYou
-
             onServicePress={handleRecommendedServicePress}
             onViewAllPress={handleRecommendedViewAllPress}
             onAddServicePress={handleAddServicePress}
@@ -141,8 +166,27 @@ const Home = () => {
             onPress={handleRepeatServicePress}
             onSetupPress={handleSetupPress}
           />
+
+          {/* Test Button for Bottom Sheet */}
+          <View className="p-4">
+            <TouchableOpacity
+              onPress={() => openServiceDetail(serviceBottomSheetRef.current)}
+              className="bg-blue-500 py-3 px-6 rounded-lg items-center"
+            ></TouchableOpacity>
+          </View>
         </View>
       </Animated.ScrollView>
+
+      <ServiceDetailBottomSheet
+        ref={serviceBottomSheetRef}
+        service={serviceDataa}
+        processSteps={processSteps}
+        faqs={faqs}
+        onAddService={handleAddService}
+        onBookNow={handleBookNow}
+        cartQuantity={cartQuantity}
+        onQuantityChange={handleQuantityChange}
+      />
     </View>
   );
 };

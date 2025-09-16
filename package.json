@@ -15,6 +15,7 @@
     "@expo/metro-config": "~0.18.11",
     "@expo/prebuild-config": "~7.0.0",
     "@expo/vector-icons": "^14.0.4",
+    "@gorhom/bottom-sheet": "^4.6.4",
     "@hookform/resolvers": "^3.2.0",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-picker/picker": "2.7.5",

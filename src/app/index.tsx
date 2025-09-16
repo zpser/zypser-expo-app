@@ -15,9 +15,9 @@ export default function IndexScreen() {
   useFocusEffect(
     useCallback(() => {
       // router.replace("/splash");
-      // router.replace("/(bottomtab)/orders/1");
-      // router.replace("/auth/login");
-      router.push("/(bottomtab)/home");
+      // router.replace("/(bottomtab)/home");
+      router.replace("/auth/login");
+      // router.push("/1");
       // checkAndNavigate();
     }, [])
   );

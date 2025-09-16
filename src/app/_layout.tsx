@@ -15,6 +15,7 @@ import { NAV_THEME } from "@/theme";
 import { useColorScheme } from "nativewind";
 import "../../global.css";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -66,56 +67,64 @@ function RootLayoutNav() {
 
         {/* <ThemeProvider value={NAV_THEME[colorScheme]}> */}
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <Stack screenOptions={{ animation: "ios" }}>
-            {/* Entry point - determines initial route */}
-            <Stack.Screen name="index" options={{ headerShown: false }} />
+          <BottomSheetModalProvider>
+            <Stack screenOptions={{ animation: "ios" }}>
+              {/* Entry point - determines initial route */}
+              <Stack.Screen name="index" options={{ headerShown: false }} />
 
-            <Stack.Screen name="splash" options={{ headerShown: false }} />
+              <Stack.Screen name="splash" options={{ headerShown: false }} />
 
-            <Stack.Screen
-              name="fetchlocation"
-              options={{ headerShown: false }}
-            />
+              <Stack.Screen
+                name="fetchlocation"
+                options={{ headerShown: false }}
+              />
 
-            {/* Auth group - handles join-our-network, login, otp */}
-            <Stack.Screen name="auth" options={{ headerShown: false }} />
+              {/* Auth group - handles join-our-network, login, otp */}
+              <Stack.Screen name="auth" options={{ headerShown: false }} />
 
-            {/* Onboarding screens */}
-            <Stack.Screen
-              name="welcome"
-              options={{
-                headerShown: false,
-                // Prevent going back to auth
-                gestureEnabled: false,
-              }}
-            />
-            <Stack.Screen
-              name="profileDetail"
-              options={{
-                headerShown: false,
-                // Prevent going back
-                gestureEnabled: false,
-              }}
-            />
+              {/* Onboarding screens */}
+              <Stack.Screen
+                name="welcome"
+                options={{
+                  headerShown: false,
+                  // Prevent going back to auth
+                  gestureEnabled: false,
+                }}
+              />
+              <Stack.Screen
+                name="profileDetail"
+                options={{
+                  headerShown: false,
+                  // Prevent going back
+                  gestureEnabled: false,
+                }}
+              />
 
-            {/* Main app screens */}
-            <Stack.Screen
-              name="(bottomtab)"
-              options={{
-                headerShown: false,
-                gestureEnabled: false,
-              }}
-            />
+              {/* Main app screens */}
+              <Stack.Screen
+                name="(bottomtab)"
+                options={{
+                  headerShown: false,
+                  gestureEnabled: false,
+                }}
+              />
+              <Stack.Screen
+                name="[service]"
+                options={{
+                  headerShown: false,
+                }}
+              />
 
-            {/* Modal and other screens */}
-            <Stack.Screen
-              name="modal"
-              options={{
-                presentation: "modal",
-                headerShown: false,
-              }}
-            />
-          </Stack>
+              {/* Modal and other screens */}
+              <Stack.Screen
+                name="modal"
+                options={{
+                  presentation: "modal",
+                  headerShown: false,
+                }}
+              />
+            </Stack>
+          </BottomSheetModalProvider>
         </GestureHandlerRootView>
         {/* </ThemeProvider> */}
       </SafeAreaProvider>

@@ -18,6 +18,10 @@ interface RecommendedForYouProps {
   onViewAllPress?: () => void;
   onAddServicePress?: (serviceId: number) => void;
   loading?: boolean;
+  showViewAll?: boolean;
+  containerClassName?: string;
+  sectionTitleContainerClassName?: string;
+  flashListContainerClassName?: string;
 }
 
 const RecommendedForYou: React.FC<RecommendedForYouProps> = ({
@@ -27,6 +31,10 @@ const RecommendedForYou: React.FC<RecommendedForYouProps> = ({
   onViewAllPress,
   onAddServicePress,
   loading = false,
+  showViewAll = true,
+  containerClassName,
+  sectionTitleContainerClassName,
+  flashListContainerClassName,
 }) => {
   const handleServicePress = (serviceId: number) => {
     onServicePress?.(serviceId);
@@ -86,12 +94,13 @@ const RecommendedForYou: React.FC<RecommendedForYouProps> = ({
   );
 
   return (
-    <View className="bg-white py-6">
+    <View className={`bg-white py-6 ${containerClassName || ""}`}>
       {/* Header using SectionTitleBar */}
       <SectionTitleBar
+        showViewAll={showViewAll}
         title={title}
         onViewAllPress={onViewAllPress}
-        containerClassName="mb-4 px-4"
+        containerClassName={sectionTitleContainerClassName || "mb-4 px-4"}
       />
 
       {/* Horizontal List using CustomFlashList */}
@@ -101,7 +110,7 @@ const RecommendedForYou: React.FC<RecommendedForYouProps> = ({
           renderItem={({ item }) => <ServiceItem item={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
-          containerClassName="px-4 pr-0"
+          containerClassName={flashListContainerClassName || "px-4 pr-0"}
           loading={loading}
           emptyText="No recommended services available"
           keyExtractor={(item) => item.id.toString()}

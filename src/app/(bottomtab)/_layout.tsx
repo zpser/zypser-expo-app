@@ -10,7 +10,6 @@ import { COLORS } from "@/util/constant/colors";
 export default function TabsLayout() {
   const { colorScheme } = useColorScheme();
   const insets = useSafeAreaInsets();
-
   return (
     <Tabs
       screenOptions={{

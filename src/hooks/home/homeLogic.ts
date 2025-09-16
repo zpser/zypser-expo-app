@@ -6,11 +6,28 @@ import {
   interpolate,
   Extrapolation,
 } from "react-native-reanimated";
+import React, { useCallback, useState } from "react";
 import { serviceCategories } from "@/assets/data/home";
+import type { CustomBottomSheetRef } from "@/components/core/bottomsheet/CustomBottomSheet";
+import { router } from "expo-router";
 
 export const useHomeLogic = () => {
   const insets = useSafeAreaInsets();
   const scrollY = useSharedValue(0);
+
+  // Cart state
+  const [cartQuantity, setCartQuantity] = useState<number>(0);
+  const handleQuantityChange = useCallback((quantity: number) => {
+    setCartQuantity(quantity);
+  }, []);
+
+  // Bottom sheet helpers
+  const openServiceDetail = useCallback((ref?: CustomBottomSheetRef | null) => {
+    ref?.expand();
+    setTimeout(() => {
+      ref?.snapToIndex(0);
+    }, 200);
+  }, []);
 
   // Dynamic height calculations
   const TOP_BAR_HEIGHT = 48;
@@ -77,6 +94,7 @@ export const useHomeLogic = () => {
   };
 
   const handleFeaturedServicePress = (id: number) => {
+    router.push("/id");
     console.log("Featured service pressed:", id);
   };
 
@@ -137,6 +155,11 @@ export const useHomeLogic = () => {
     // Data
     serviceCategories,
     insets,
+
+    // Cart
+    cartQuantity,
+    handleQuantityChange,
+    openServiceDetail,
 
     // Constants
     TOP_BAR_HEIGHT,

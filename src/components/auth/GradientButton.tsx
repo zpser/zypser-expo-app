@@ -22,7 +22,7 @@ interface GradientButtonProps {
 const GradientButton: React.FC<GradientButtonProps> = ({
   title,
   onPress,
-  colors = [COLORS.gradinet1, COLORS.gradient2],
+  colors = [COLORS.gradient1, COLORS.gradient2],
   isRigthIcon,
   style,
 }) => {
