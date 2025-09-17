@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const account = () => {
+const referral = () => {
   return (
     <View>
-      <Text>account</Text>
+      <Text>referral</Text>
     </View>
   );
 };
 
-export default account;
+export default referral;

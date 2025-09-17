@@ -16,7 +16,8 @@ export default function IndexScreen() {
     useCallback(() => {
       // router.replace("/splash");
       // router.replace("/(bottomtab)/home");
-      router.replace("/auth/login");
+      router.replace("/(bottomtab)/account/profile");
+      // router.replace("/auth/login");
       // router.push("/1");
       // checkAndNavigate();
     }, [])

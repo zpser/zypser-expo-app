@@ -23,10 +23,10 @@ export const useHomeLogic = () => {
 
   // Bottom sheet helpers
   const openServiceDetail = useCallback((ref?: CustomBottomSheetRef | null) => {
-    ref?.expand();
-    setTimeout(() => {
-      ref?.snapToIndex(0);
-    }, 200);
+    // ref?.expand();
+    // setTimeout(() => {
+    //   ref?.snapToIndex(0);
+    // }, 200);
   }, []);
 
   // Dynamic height calculations
