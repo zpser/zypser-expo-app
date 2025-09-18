@@ -26,7 +26,7 @@ const NotificationSection: React.FC<NotificationSectionProps> = ({
     <View className="mb-6">
       <Text
         variant="caption1"
-        className=" font-semibold tracking-wider uppercase px-2 py-3"
+        className=" font-medium tracking-wider uppercase px-2 py-3"
         style={{ color: COLORS.secondaryText }}
       >
         {title}
