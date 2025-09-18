@@ -13,6 +13,7 @@ import {
 } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import { Text } from "../text";
+import { COLORS } from "@/util/constant/colors";
 
 export interface CustomBottomSheetRef {
   expand: () => void;
@@ -134,7 +135,7 @@ const CustomBottomSheet = forwardRef<
         ]}
         handleIndicatorStyle={[
           {
-            backgroundColor: "#d1d5db",
+            backgroundColor: COLORS.borderLight,
             width: 40,
             height: 4,
           },

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { Icon } from "@/components/core/icon";
+import { COLORS } from "@/util/constant/colors";
 
 interface OTPStatusProps {
   otpLength: number;
@@ -16,7 +17,7 @@ const OTPStatus: React.FC<OTPStatusProps> = ({ otpLength, isLoading }) => {
         <Icon
           name="check-circle-o"
           size={20}
-          color="#179236"
+          color={COLORS.success}
           className="mr-2"
         />
       )}

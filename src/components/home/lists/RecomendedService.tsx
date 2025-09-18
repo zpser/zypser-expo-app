@@ -78,7 +78,10 @@ const RecommendedForYou: React.FC<RecommendedForYouProps> = ({
 
           {/* Rating */}
           <View className="flex-row items-center gap-1">
-            <Ionicon name="star" size={14} color="#F4B300" />
+            <Ionicon name="star" size={14} color={COLORS.warning} />
+            <Text variant="caption2" className="text-gray-600">
+              {`${item.rating} (${item.reviewCount})`}
+            </Text>
             <Text variant="caption2" className="text-gray-600">
               {`${item.rating} (${item.reviewCount})`}
             </Text>

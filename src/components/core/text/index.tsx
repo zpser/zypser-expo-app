@@ -8,6 +8,7 @@ import * as React from "react";
 import { Text as RNText } from "react-native";
 
 import { cn } from "@/lib/cn";
+import { COLORS } from "@/util/constant/colors";
 
 const textVariants = cva("text-foreground", {
   variants: {
@@ -25,7 +26,7 @@ const textVariants = cva("text-foreground", {
       caption2: "text-[11px] leading-4",
     },
     color: {
-      primary: "#121628",
+      primary: COLORS.primaryText,
       secondary: "text-secondary-foreground/90",
       tertiary: "text-muted-foreground/90",
       quarternary: "text-muted-foreground/50",

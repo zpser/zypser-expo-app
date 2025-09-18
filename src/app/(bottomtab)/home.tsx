@@ -13,6 +13,7 @@ import { useHomeLogic } from "@/hooks/home/homeLogic";
 import ServiceDetailBottomSheet from "@/components/home/sheet/ServiceDetailBottomSheet";
 import { CustomBottomSheetRef } from "@/components/core/bottomsheet/CustomBottomSheet";
 import { faqs, processSteps, serviceDataa } from "@/assets/data/bottomsheet";
+import { COLORS } from "@/util/constant/colors";
 
 const Home = () => {
   const serviceBottomSheetRef = useRef<CustomBottomSheetRef>(null);
@@ -93,7 +94,7 @@ const Home = () => {
         ]}
       >
         <LinearGradient
-          colors={["#121628", "#0A1B3D", "#121628"]}
+          colors={[COLORS.primaryText, COLORS.gradient3, COLORS.primaryText]}
           locations={[0, 0.5, 1]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}

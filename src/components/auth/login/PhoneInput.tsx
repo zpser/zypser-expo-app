@@ -51,7 +51,11 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, errors }) => {
             {selectedCountry.dialCode}
           </Text>
           <View className="ml-2">
-            <Ionicon name="chevron-down" size={16} color="#9CA3AF" />
+            <Ionicon
+              name="chevron-down"
+              size={16}
+              color={COLORS.textTertiary}
+            />
           </View>
         </TouchableOpacity>
 
@@ -62,7 +66,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, errors }) => {
             <TextInput
               className="flex-1 px-4 py-4 text-gray-700"
               placeholder="Phone Number"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor={COLORS.textTertiary}
               keyboardType="phone-pad"
               onBlur={onBlur}
               onChangeText={onChange}
@@ -95,7 +99,11 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ control, errors }) => {
                 <View className="flex-row justify-between items-center">
                   <Text className="text-lg font-semibold">Select Country</Text>
                   <TouchableOpacity onPress={() => setShowCountryPicker(false)}>
-                    <Ionicon name="close" size={24} color="#374151" />
+                    <Ionicon
+                      name="close"
+                      size={24}
+                      color={COLORS.textTertiary}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>

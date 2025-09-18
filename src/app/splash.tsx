@@ -59,7 +59,7 @@ const Splash = () => {
             className="w-full rounded-full mb-6"
           >
             <LinearGradient
-              colors={["#AD48FF80", "#EE4D9880"]}
+              colors={[COLORS.gradient1wo, COLORS.gradient2wo]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={{ padding: 12, borderRadius: 100 }}

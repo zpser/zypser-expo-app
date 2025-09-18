@@ -38,7 +38,7 @@ const ZypserCoverBanner: React.FC<ZypserCoverBannerProps> = ({
           }}
         >
           <LinearGradient
-            colors={["#1A48A3", "#0A1B3D"]}
+            colors={[COLORS.coverbannerBg, COLORS.gradient3]}
             locations={[0, 1]}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}

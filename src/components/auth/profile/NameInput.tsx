@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TextInput } from "react-native";
 import { Controller, Control, FieldErrors } from "react-hook-form";
+import { COLORS } from "@/util/constant/colors";
 
 type NameFormValues = {
   name: string;
@@ -41,7 +42,7 @@ const NameInput: React.FC<NameInputProps> = ({
             <TextInput
               className="text-sm text-gray-900 mb-0.5"
               placeholder={nameValue ? "" : "full name"}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor={COLORS.textTertiary}
               value={value}
               onChangeText={onChange}
               onFocus={onFocus}

@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, TextInput } from "react-native";
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import { EmailLoginData } from "@/service/validation";
+import { COLORS } from "@/util/constant/colors";
 
 interface EmailInputProps {
   control: Control<EmailLoginData>;
@@ -23,7 +24,7 @@ const EmailInput: React.FC<EmailInputProps> = ({ control, errors }) => {
             <TextInput
               className="px-4 py-4 text-gray-700"
               placeholder="Email Address"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor={COLORS.textTertiary}
               keyboardType="email-address"
               autoCapitalize="none"
               onBlur={onBlur}

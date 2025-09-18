@@ -86,7 +86,7 @@ const ServicesList: React.FC<ServicesListProps> = ({
             </Text>
 
             <View className="flex-row items-center mb-3">
-              <Icon name="star" size={14} color="#FFA500" />
+              <Icon name="star" size={14} color={COLORS.warning} />
               <Text
                 variant="footnote"
                 className="ml-1"

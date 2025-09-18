@@ -15,6 +15,8 @@ export const COLORS = {
   gradient1wo: "#AD48FF80",
   gradient2wo: "#EE4D9880",
 
+  gradient3: "#0A1B3D",
+
   inProgress: "#FF9932",
   scheduled: "#0045CE",
   completed: "#00CE9C",
@@ -23,7 +25,7 @@ export const COLORS = {
 
   helpButton: "#0045CE", // Blue for Get Help button
   warningButton: "#F4B300", // Orange for Report Issue button
-  cardBg: "#FAF8FE", // Light gray for cards
+  cardBg: "FAF8FE",
   borderLight: "#E5E7EB", // Light border color
 
   // Additional colors for better UI
@@ -41,4 +43,6 @@ export const COLORS = {
   bgPrimary: "#FFFFFF", // Primary background
   bgSecondary: "#EFEFEF", // Secondary background
   bgTertiary: "#F6F6F6", // Tertiary background
+  bgTab: "#FCFCFC",
+  coverbannerBg: "#1A48A3",
 };

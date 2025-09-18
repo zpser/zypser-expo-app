@@ -41,7 +41,7 @@ const RepeatService: React.FC<RepeatServiceProps> = ({
           style={{ height: 349 }} // Based on CSS height
         >
           <LinearGradient
-            colors={["#121628", "#0A1B3D"]}
+            colors={[COLORS.primaryText, COLORS.gradient3]}
             locations={[0, 1]}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}

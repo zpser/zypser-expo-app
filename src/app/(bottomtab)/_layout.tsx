@@ -15,9 +15,9 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: "#FCFCFC",
+          backgroundColor: COLORS.bgTab,
           borderTopWidth: 1,
-          borderTopColor: "rgba(18, 22, 40, 0.08)",
+          borderTopColor: COLORS.borderLight,
           height: 66 + insets.bottom, // Add bottom safe area
           paddingTop: 12,
           paddingBottom: Math.max(insets.bottom, 12), // Ensure minimum padding
