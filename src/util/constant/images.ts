@@ -10,6 +10,7 @@ import RepeartServiceSvg from "@/assets/images/repeatservice.svg";
 import SplashSvg from "@/assets/images/splash.svg";
 import MapSvg from "@/assets/images/map.svg";
 import WorkerSvg from "@/assets/images/worker.svg";
+import SecuritySvg from "@/assets/images/security.svg";
 
 export const IMAGES = {
   acrepair: AcrepairSvg,
@@ -23,4 +24,5 @@ export const IMAGES = {
   splash: SplashSvg,
   map: MapSvg,
   worker: WorkerSvg,
+  security: SecuritySvg,
 };

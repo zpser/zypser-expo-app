@@ -1,26 +1,80 @@
-import { View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { View, ScrollView } from "react-native";
 import { Text } from "@/components/core/text";
-import { router } from "expo-router";
-import { TouchableOpacity } from "@/components/core/button";
+import { COLORS } from "@/util/constant/colors";
+import { SafeAreaView } from "@/components/core/safe-area-view";
+import NotificationHeader from "@/components/account/notifications/NotificationHeader";
+import NotificationSection from "@/components/account/notifications/NotificationSection";
+import {
+  NOTIFICATION_SETTINGS,
+  NotificationItem,
+  NotificationSettings,
+} from "@/assets/data/account";
+import AccountHeader from "@/components/account/AccountHeader";
 
 const NotificationsScreen = () => {
-  return (
-    <View className="flex-1 bg-white p-4">
-      <Text variant="title1" className="mb-4">
-        Notifications
-      </Text>
-      <Text variant="body" className="mb-4">
-        Notification preferences and settings
-      </Text>
+  const [notificationSettings, setNotificationSettings] =
+    useState<NotificationSettings>(NOTIFICATION_SETTINGS);
 
-      <TouchableOpacity
-        onPress={() => router.back()}
-        className="bg-blue-500 py-3 px-6 rounded-lg items-center"
-      >
-        <Text className="text-white font-semibold">Back to Account</Text>
-      </TouchableOpacity>
-    </View>
+  const handleToggle = (id: string) => {
+    setNotificationSettings((prev) => {
+      const newSettings = { ...prev };
+
+      // Find and toggle the specific notification item
+      Object.keys(newSettings).forEach((sectionKey) => {
+        const section = newSettings[sectionKey as keyof typeof newSettings];
+        if (Array.isArray(section)) {
+          section.forEach((item: NotificationItem) => {
+            if (item.id === id) {
+              item.isEnabled = !item.isEnabled;
+            }
+          });
+        }
+      });
+
+      return newSettings;
+    });
+  };
+
+  return (
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: COLORS.background }}
+      className="flex-1 bg-allStone"
+      paddingX={0}
+    >
+      <View className="flex-1 bg-allStone mx-4 mt-4">
+        {/* Header */}
+        <AccountHeader title="Notifications" />
+
+        {/* Scrollable Content */}
+        <ScrollView
+          className="flex-1"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingBottom: 100,
+            paddingTop: 20,
+          }}
+        >
+          <NotificationSection
+            title="SERVICE NOTIFICATION"
+            items={notificationSettings.serviceNotifications}
+            onToggle={handleToggle}
+          />
+
+          <NotificationSection
+            title="MARKETING & PROMOTIONS"
+            items={notificationSettings.marketingPromotions}
+            onToggle={handleToggle}
+          />
+
+          <NotificationSection
+            title="COMMUNICATION CHANNELS"
+            items={notificationSettings.communicationChannels}
+            onToggle={handleToggle}
+          />
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 
