@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { View, Dimensions } from 'react-native';
-import PagerView from 'react-native-pager-view';
+import React, { useRef, useState, useEffect } from "react";
+import { View } from "react-native";
+import PagerView from "react-native-pager-view";
 
 interface CustomSwiperProps {
   children: React.ReactNode[];
@@ -19,11 +19,10 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({
   delay = 3000,
   autoScroll = false,
   showDots = false,
-  className = '',
+  className = "",
 }) => {
   const pagerRef = useRef<PagerView>(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const { width } = Dimensions.get('window');
 
   useEffect(() => {
     if (autoScroll && children.length > 1) {
@@ -44,7 +43,7 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({
   };
 
   return (
-    <View className={`${className}`} style={{ height, width: '100%' }}>
+    <View className={`${className}`} style={{ height, width: "100%" }}>
       <PagerView
         ref={pagerRef}
         style={{ flex: 1 }}
@@ -57,14 +56,14 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({
           </View>
         ))}
       </PagerView>
-      
+
       {showDots && (
         <View className="flex-row justify-center items-center mt-4 gap-2">
           {children.map((_, index) => (
             <View
               key={index}
               className={`w-2 h-2 rounded-full ${
-                index === currentPage ? 'bg-primaryButton' : 'bg-gray-300'
+                index === currentPage ? "bg-primaryButton" : "bg-gray-300"
               }`}
             />
           ))}
@@ -75,4 +74,3 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({
 };
 
 export default CustomSwiper;
-

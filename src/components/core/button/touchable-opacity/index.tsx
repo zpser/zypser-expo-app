@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 import {
   Pressable,
   ViewStyle,
   StyleProp,
   PressableStateCallbackType,
   GestureResponderEvent,
-} from 'react-native';
+} from "react-native";
 
 export const TouchableOpacity = ({
   onPress,
@@ -24,7 +24,10 @@ export const TouchableOpacity = ({
     <Pressable
       disabled={disabled}
       onPress={onPress}
-      style={({ pressed }) => [style, { opacity: pressed ? 0.5 : 1, transition: 'opacity 0.1s' }]}
+      style={({ pressed }) => [
+        style,
+        { opacity: pressed ? 0.5 : 1, transition: "opacity 0.1s" },
+      ]}
       className={className}
     >
       {children}
