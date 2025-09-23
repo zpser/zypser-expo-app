@@ -13,6 +13,7 @@ import Svg, {
 } from "react-native-svg";
 import CustomSvg from "@/components/core/svg/CustomSvg";
 import { COLORS } from "@/util/constant/colors";
+import { ROUTES } from "@/util/constant/routes";
 import { Icon } from "@/components/core/icon";
 import { router } from "expo-router";
 
@@ -24,7 +25,7 @@ const FetchLocation = () => {
     const timer = setTimeout(() => {
       setLocationFetched(true);
       setTimeout(() => {
-        router.replace("/(bottomtab)/home");
+        router.replace(ROUTES.BOTTOM_TAB.HOME);
       }, 1000);
     }, 3000);
 

@@ -5,14 +5,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import CustomSvg from "@/components/core/svg/CustomSvg";
 import { TouchableOpacity } from "@/components/core/button";
 import { COLORS } from "@/util/constant/colors";
+import { ROUTES } from "@/util/constant/routes";
 import { router } from "expo-router";
 import CustomHeader from "@/components/core/header";
-import { Icon, LucideIcon } from "@/components/core/icon";
 
 const Splash = () => {
   const handleGetStarted = () => {
-    // Navigate to next screen
-    router.push("/auth/login"); // Update with your actual route
+    router.push(ROUTES.AUTH.LOGIN);
   };
 
   return (
@@ -78,12 +77,12 @@ const Splash = () => {
                 className="absolute right-6 top-1/2"
                 style={{ marginTop: 2 }}
               >
-                <LucideIcon
+                {/* <LucideIcon
                   name="ArrowRight"
                   size={20}
                   color={COLORS.white}
                   strokeWidth={2.5}
-                />
+                /> */}
               </View>
             </LinearGradient>
           </TouchableOpacity>

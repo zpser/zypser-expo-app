@@ -1,15 +1,15 @@
 // app/(bottomtab)/orders/past.tsx
-import React, { useMemo, useCallback } from "react";
-import { COLORS } from "@/util/constant/colors";
-import { OrderStatus, OrderItem } from "@/@types/order";
-import { OrderCard } from "@/components/orders/OrderCard";
-import CustomFlashList from "@/components/core/list/CustomFlashList";
+import { OrderItem } from "@/@types/order";
 import { PAST_ORDERS } from "@/assets/data/order";
+import CustomFlashList from "@/components/core/list/CustomFlashList";
+import { OrderCard } from "@/components/orders/OrderCard";
+import { getOrderDetailRoute } from "@/util/constant/routes";
 import { router } from "expo-router";
+import { useCallback } from "react";
 
 export default function PastOrders() {
   const handleOrderPress = useCallback((orderId: string) => {
-    router.push(`/orders/${orderId}`);
+    router.push(getOrderDetailRoute(orderId));
 
     console.log("Past order pressed:", orderId);
     // Navigate to order details

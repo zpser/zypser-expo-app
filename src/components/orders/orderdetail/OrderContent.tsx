@@ -13,15 +13,18 @@ interface OrderItem {
   price: number;
 }
 
-interface OrderContentProps {
+interface Order {
+  id: string;
   title: string;
   date: string;
   time: string;
   status: OrderStatus;
-  instructionNote?: string;
+  amount: string;
+  iconUrl: string;
   customerName: string;
   customerEmail: string;
   customerPhone: string;
+  instructionNote?: string;
   address: string;
   city: string;
   state: string;
@@ -31,29 +34,17 @@ interface OrderContentProps {
   shipping: number;
   tax: number;
   total: number;
+}
+
+interface OrderContentProps {
+  order: Order;
   onReorderService: () => void;
   onGetHelp: () => void;
   onReportIssue: () => void;
 }
 
 export const OrderContent: React.FC<OrderContentProps> = ({
-  title,
-  date,
-  time,
-  status,
-  instructionNote,
-  customerName,
-  customerEmail,
-  customerPhone,
-  address,
-  city,
-  state,
-  zipCode,
-  items,
-  subtotal,
-  shipping,
-  tax,
-  total,
+  order,
   onReorderService,
   onGetHelp,
   onReportIssue,
@@ -78,11 +69,11 @@ export const OrderContent: React.FC<OrderContentProps> = ({
           }}
         >
           <ServiceInfo
-            title={title}
-            date={date}
-            time={time}
-            status={status}
-            instructionNote={instructionNote}
+            title={order.title}
+            date={order.date}
+            time={order.time}
+            status={order.status}
+            instructionNote={order.instructionNote}
           />
 
           <ActionButtons
@@ -99,25 +90,25 @@ export const OrderContent: React.FC<OrderContentProps> = ({
             }}
           >
             <CustomerInfo
-              customerName={customerName}
-              customerEmail={customerEmail}
-              customerPhone={customerPhone}
+              customerName={order.customerName}
+              customerEmail={order.customerEmail}
+              customerPhone={order.customerPhone}
             />
 
             <OrderSummary
-              items={items}
-              subtotal={subtotal}
-              shipping={shipping}
-              tax={tax}
-              total={total}
+              items={order.items}
+              subtotal={order.subtotal}
+              shipping={order.shipping}
+              tax={order.tax}
+              total={order.total}
             />
 
             <AddressInfo
-              customerName={customerName}
-              address={address}
-              city={city}
-              state={state}
-              zipCode={zipCode}
+              customerName={order.customerName}
+              address={order.address}
+              city={order.city}
+              state={order.state}
+              zipCode={order.zipCode}
             />
           </View>
         </ScrollView>

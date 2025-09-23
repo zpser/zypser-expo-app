@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { View, ScrollView } from "react-native";
 import { Text } from "@/components/core/text";
 import { COLORS } from "@/util/constant/colors";
@@ -16,11 +16,10 @@ const NotificationsScreen = () => {
   const [notificationSettings, setNotificationSettings] =
     useState<NotificationSettings>(NOTIFICATION_SETTINGS);
 
-  const handleToggle = (id: string) => {
+  const handleToggle = useCallback((id: string) => {
     setNotificationSettings((prev) => {
       const newSettings = { ...prev };
 
-      // Find and toggle the specific notification item
       Object.keys(newSettings).forEach((sectionKey) => {
         const section = newSettings[sectionKey as keyof typeof newSettings];
         if (Array.isArray(section)) {
@@ -34,7 +33,7 @@ const NotificationsScreen = () => {
 
       return newSettings;
     });
-  };
+  }, []);
 
   return (
     <SafeAreaView

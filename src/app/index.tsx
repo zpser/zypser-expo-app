@@ -5,6 +5,7 @@ import {
   PROFILE_COMPLETED,
 } from "@/service/storageHandler";
 import { COLORS } from "@/util/constant/colors";
+import { ROUTES } from "@/util/constant/routes";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback } from "react";
 import { ActivityIndicator, View } from "react-native";
@@ -14,10 +15,10 @@ const WELCOME_SCREEN_DAYS = 10;
 export default function IndexScreen() {
   useFocusEffect(
     useCallback(() => {
-      // router.replace("/splash");
-      // router.replace("/(bottomtab)/home");
-      router.replace("/(bottomtab)/account/profile");
-      // router.replace("/auth/login");
+      router.replace(ROUTES.SPLASH);
+      // router.replace(ROUTES.BOTTOM_TAB.HOME);
+      // router.replace(ROUTES.ACCOUNT.PROFILE);
+      // router.replace(ROUTES.AUTH.LOGIN);
       // router.push("/1");
       // checkAndNavigate();
     }, [])
@@ -32,7 +33,7 @@ export default function IndexScreen() {
       // Navigate based on current state
       if (!isLoggedIn) {
         // Not logged in - go to auth
-        router.replace("/auth/login");
+        router.replace(ROUTES.AUTH.LOGIN);
         return;
       }
 
@@ -41,10 +42,10 @@ export default function IndexScreen() {
         // Profile not completed
         if (shouldShowWelcome(firstLoginDate)) {
           // Within 10 days - show welcome first
-          router.replace("/welcome");
+          router.replace(ROUTES.WELCOME);
         } else {
           // After 10 days - go directly to profile detail
-          router.replace("/profileDetail");
+          router.replace(ROUTES.PROFILE_DETAIL);
         }
         return;
       }
@@ -52,14 +53,14 @@ export default function IndexScreen() {
       // Profile completed
       if (shouldShowWelcome(firstLoginDate)) {
         // Within 10 days - show welcome
-        router.replace("/welcome");
+        router.replace(ROUTES.WELCOME);
       } else {
         // After 10 days - go directly to home
-        router.replace("/home");
+        router.replace(ROUTES.BOTTOM_TAB.HOME);
       }
     } catch (error) {
       // Error reading storage, fallback to auth
-      router.replace("/auth/login");
+      router.replace(ROUTES.AUTH.LOGIN);
     }
   };
 

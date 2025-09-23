@@ -1,11 +1,6 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
-import { Alert } from "react-native";
+import { ROUTES } from "@/util/constant/routes";
 import {
-  phoneLoginSchema,
-  emailLoginSchema,
   PhoneLoginData,
   EmailLoginData,
   validatePhoneNumber,
@@ -13,27 +8,7 @@ import {
 } from "@/service/validation";
 import { LoginMethod } from "@/@types/login";
 
-export const useLoginLogic = () => {
-  const [loginMethod, setLoginMethod] = useState<LoginMethod>(
-    LoginMethod.PHONE
-  );
-  const [isLoading, setIsLoading] = useState(false);
-
-  const phoneForm = useForm<PhoneLoginData>({
-    resolver: zodResolver(phoneLoginSchema),
-    defaultValues: {
-      phoneNumber: "",
-      countryCode: "+61",
-    },
-  });
-
-  const emailForm = useForm<EmailLoginData>({
-    resolver: zodResolver(emailLoginSchema),
-    defaultValues: {
-      email: "",
-    },
-  });
-
+export const useLoginSubmit = (setIsLoading: (loading: boolean) => void) => {
   const onPhoneSubmit = async (data: PhoneLoginData) => {
     setIsLoading(true);
 
@@ -52,7 +27,7 @@ export const useLoginLogic = () => {
 
       // Navigate to OTP screen with phone data
       router.push({
-        pathname: "/auth/otp",
+        pathname: ROUTES.AUTH.OTP,
         params: {
           phoneNumber: phoneValidation.data,
           method: LoginMethod.PHONE,
@@ -83,7 +58,7 @@ export const useLoginLogic = () => {
 
       // Navigate to OTP screen with email data
       router.push({
-        pathname: "/auth/otp",
+        pathname: ROUTES.AUTH.OTP,
         params: {
           email: emailValidation.data,
           method: LoginMethod.EMAIL,
@@ -96,32 +71,8 @@ export const useLoginLogic = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    console.log("Continue with Google");
-    // Handle Google login logic here
-    console.log("Info", "Google login not implemented yet");
-  };
-
-  const handleAppleLogin = () => {
-    console.log("Continue with Apple");
-    // Handle Apple login logic here
-    console.log("Info", "Apple login not implemented yet");
-  };
-
   return {
-    // State
-    loginMethod,
-    isLoading,
-
-    // Forms
-    phoneForm,
-    emailForm,
-
-    // Actions
-    setLoginMethod,
     onPhoneSubmit,
     onEmailSubmit,
-    handleGoogleLogin,
-    handleAppleLogin,
   };
 };

@@ -10,6 +10,7 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import { ROUTES } from "@/util/constant/routes";
 import CustomSwiper from "@/components/CustomSwiper";
 import NoMiddlemen from "@/components/onboarding/NoMiddlemen";
 import GrowYourBusiness from "@/components/onboarding/GrowYourBusiness";
@@ -33,7 +34,7 @@ const JoinOurNetwork = () => {
   };
 
   const handleLoginClick = () => {
-    router.push("/home");
+    router.push(ROUTES.BOTTOM_TAB.HOME);
   };
 
   return (

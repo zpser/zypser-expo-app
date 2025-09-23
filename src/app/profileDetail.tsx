@@ -4,25 +4,19 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CustomHeader from "@/components/core/header";
 import Footer from "@/components/auth/CommonFooter";
 import { NameInput, PrivacyText, ProfileButton } from "@/components/auth";
-import { useProfileLogic } from "@/hooks/auth";
+import { useProfileForm } from "@/hooks/auth/profile/useProfileForm";
+import { useProfileState } from "@/hooks/auth/profile/useProfileState";
+import { useProfileActions } from "@/hooks/auth/profile/useProfileActions";
 import { COLORS } from "@/util/constant/colors";
 import GradientButton from "@/components/auth/GradientButton";
 
 const ProfileDetail = () => {
-  const {
-    // State
-    isFocused,
-    isLoading,
-    nameValue,
-
-    // Form
-    form,
-
-    // Actions
-    onSubmit,
-    handleInputFocus,
-    handleInputBlur,
-  } = useProfileLogic();
+  // Use smaller, focused hooks
+  const { form, nameValue } = useProfileForm();
+  const { isFocused, setIsFocused, isLoading, setIsLoading } =
+    useProfileState();
+  const { onSubmit, handleInputFocus, handleInputBlur } =
+    useProfileActions(setIsLoading);
 
   return (
     <SafeAreaView
@@ -51,8 +45,8 @@ const ProfileDetail = () => {
               control={form.control}
               errors={form.formState.errors}
               isFocused={isFocused}
-              onFocus={handleInputFocus}
-              onBlur={handleInputBlur}
+              onFocus={() => handleInputFocus(setIsFocused)}
+              onBlur={() => handleInputBlur(setIsFocused)}
               nameValue={nameValue}
             />
 

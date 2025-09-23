@@ -16,12 +16,12 @@
  *
  */
 
-import { FontAwesome } from '@expo/vector-icons';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { ColorValue, StyleProp, TextStyle } from 'react-native';
-import { usePathname } from 'expo-router';
-import { useColorScheme } from 'nativewind';
-import { TAB_THEME } from '@/theme';
+import { FontAwesome } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { ColorValue, StyleProp, TextStyle } from "react-native";
+import { usePathname } from "expo-router";
+import { useColorScheme } from "nativewind";
+import { TAB_THEME } from "@/theme";
 
 /** 
  * 
@@ -31,7 +31,7 @@ import { TAB_THEME } from '@/theme';
 
     If you don't want to include Lucide icons in your bundle, please comment out or remove the import statement  and LucideIcon component below.
  */
-import { icons, LucideProps } from 'lucide-react-native';
+import { icons, LucideProps } from "lucide-react-native";
 
 export const Icon = ({
   name,
@@ -41,7 +41,7 @@ export const Icon = ({
   onPress,
   style,
 }: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof FontAwesome>["name"];
   color?: ColorValue;
   className?: string;
   size?: number;
@@ -70,12 +70,13 @@ export const LucideIcon = ({
 }: {
   name: keyof typeof icons;
   color?: ColorValue;
-  size?: LucideProps['size'];
+  size?: LucideProps["size"];
   className?: string;
-  strokeWidth?: LucideProps['strokeWidth'];
+  strokeWidth?: LucideProps["strokeWidth"];
   onPress?: () => void;
 }) => {
-  const LucideIcon: React.FC<LucideProps & { color?: ColorValue }> = icons[name];
+  const LucideIcon: React.FC<LucideProps & { color?: ColorValue }> =
+    icons[name];
 
   return (
     <LucideIcon
@@ -96,7 +97,7 @@ export const Ionicon = ({
   style,
   onPress,
 }: {
-  name: React.ComponentProps<typeof Ionicons>['name'];
+  name: React.ComponentProps<typeof Ionicons>["name"];
   color?: ColorValue;
   size?: number;
   className?: string;
@@ -120,7 +121,7 @@ export const TabBarIcon = ({
   pathnames = [],
   className,
 }: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof FontAwesome>["name"];
   pathnames?: string[];
   className?: string;
 }) => {
@@ -128,7 +129,7 @@ export const TabBarIcon = ({
   const { colorScheme } = useColorScheme();
 
   const isActive = pathnames.includes(currentPath);
-  const color = TAB_THEME[colorScheme || 'light'];
+  const color = TAB_THEME[colorScheme || "light"];
 
   return (
     <Icon

@@ -1,55 +1,67 @@
-import React from "react";
-import {
-  View,
-  Text,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import CustomHeader from "@/components/core/header";
-import Footer from "@/components/auth/CommonFooter";
+import { LoginMethod } from "@/@types/login";
 import {
   OTPDescription,
   OTPInput,
   OTPStatus,
   ResendCode,
-  OTPButton,
 } from "@/components/auth";
-import { useOTPLogic } from "@/hooks/auth";
-import { COLORS } from "@/util/constant/colors";
-import { TouchableOpacity } from "@/components/core/button";
-import { LoginMethod } from "@/@types/login";
 import GradientButton from "@/components/auth/GradientButton";
+import { TouchableOpacity } from "@/components/core/button";
+import CustomHeader from "@/components/core/header";
+import { useOTPActions } from "@/hooks/auth/otp/useOTPActions";
+import { useOTPForm } from "@/hooks/auth/otp/useOTPForm";
+import { useOTPInput } from "@/hooks/auth/otp/useOTPInput";
+import { useOTPState } from "@/hooks/auth/otp/useOTPState";
+import { COLORS } from "@/util/constant/colors";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const OTP = () => {
   const {
-    // State
-    otpValues,
-    activeIndex,
-    resendTimer,
-    canResend,
-    isLoading,
     phoneNumber,
     email,
     method,
-
-    // Refs
-    otpInputRef,
+    otpValues,
+    setOtpValues,
+    activeIndex,
+    setActiveIndex,
+    resendTimer,
+    setResendTimer,
+    canResend,
+    setCanResend,
+    isLoading,
+    setIsLoading,
     animatedValues,
+    otpInputRef,
+  } = useOTPState();
 
-    // Form
-    form,
+  const { form } = useOTPForm(phoneNumber, email);
 
-    // Actions
-    handleOTPChange,
-    handleKeyPress,
-    handleInputFocus,
-    handleInputBlur,
-    onSubmit,
-    handleResendCode,
-    onChangeNumber,
-  } = useOTPLogic();
+  const { handleOTPChange, handleKeyPress, handleInputFocus, handleInputBlur } =
+    useOTPInput(
+      otpValues,
+      setOtpValues,
+      setActiveIndex,
+      animatedValues,
+      otpInputRef,
+      form
+    );
+
+  const { onSubmit, handleResendCode, onChangeNumber } = useOTPActions(
+    resendTimer,
+    setResendTimer,
+    setCanResend,
+    setIsLoading,
+    method,
+    phoneNumber,
+    email
+  );
 
   return (
     <SafeAreaView
@@ -60,8 +72,8 @@ const OTP = () => {
       <CustomHeader
         title=""
         showBackButton={true}
-        textColor={COLORS.primaryText} // text-gray-900
-        backButtonColor={COLORS.primary} // text-primaryButton
+        textColor={COLORS.primaryText}
+        backButtonColor={COLORS.primary}
         statusBarStyle="dark"
       />
 

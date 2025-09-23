@@ -1,6 +1,7 @@
 import React, { useMemo, useCallback } from "react";
 import { View } from "react-native";
 import { COLORS } from "@/util/constant/colors";
+import { ROUTES, getOrderDetailRoute } from "@/util/constant/routes";
 import { OrderStatus, OrderItem } from "@/@types/order";
 import { OrderCard } from "@/components/orders/OrderCard";
 import CustomFlashList from "@/components/core/list/CustomFlashList";
@@ -9,32 +10,30 @@ import { router } from "expo-router";
 
 export default function CurrentOrders() {
   const handleOrderPress = useCallback((orderId: string) => {
-    router.push(`/orders/${orderId}`);
+    router.push(getOrderDetailRoute(orderId));
     console.log("Order pressed:", orderId);
   }, []);
 
-  // Sort orders: InProgress first, then Scheduled
   const sortedOrders = useMemo(() => {
     return CURRENT_ORDERS.sort((a, b) => {
       if (
         a.status === OrderStatus.InProgress &&
         b.status === OrderStatus.Scheduled
       ) {
-        return -1; // InProgress comes first
+        return -1;
       }
       if (
         a.status === OrderStatus.Scheduled &&
         b.status === OrderStatus.InProgress
       ) {
-        return 1; // Scheduled comes second
+        return 1;
       }
-      return 0; // Same status, maintain original order
+      return 0;
     });
   }, []);
 
   const renderOrderItem = useCallback(
     ({ item, index }: { item: OrderItem; index: number }) => {
-      // Check if we need to add divider before this item
       const previousItem = sortedOrders[index - 1];
       const showDivider =
         previousItem &&

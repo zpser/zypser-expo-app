@@ -4,16 +4,26 @@ import { Text } from "@/components/core/text";
 import { TouchableOpacity } from "@/components/core/button";
 import { Ionicon, LucideIcon } from "@/components/core/icon";
 import { COLORS } from "@/util/constant/colors";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { icons as lucideIcons } from "lucide-react-native";
 
-export interface ProfileMenuItemProps {
-  iconName: string;
-  iconType?: "ionicon" | "lucide";
+type IoniconProps = {
+  iconType?: "ionicon";
+  iconName: React.ComponentProps<typeof Ionicons>["name"];
+};
+
+type LucideProps = {
+  iconType: "lucide";
+  iconName: keyof typeof lucideIcons;
+};
+
+export type ProfileMenuItemProps = (IoniconProps | LucideProps) & {
   title: string;
   subtitle: string;
   onPress: () => void;
   showBadge?: boolean;
   badgeText?: string;
-}
+};
 
 const ProfileMenuItem: React.FC<ProfileMenuItemProps> = ({
   iconName,
@@ -28,7 +38,7 @@ const ProfileMenuItem: React.FC<ProfileMenuItemProps> = ({
     if (iconType === "lucide") {
       return (
         <LucideIcon
-          name={iconName as any}
+          name={iconName as keyof typeof lucideIcons}
           size={20}
           color={COLORS.primary}
           strokeWidth={1.5}
@@ -36,7 +46,13 @@ const ProfileMenuItem: React.FC<ProfileMenuItemProps> = ({
       );
     }
 
-    return <Ionicon name={iconName as any} size={20} color={COLORS.primary} />;
+    return (
+      <Ionicon
+        name={iconName as React.ComponentProps<typeof Ionicons>["name"]}
+        size={20}
+        color={COLORS.primary}
+      />
+    );
   };
 
   return (

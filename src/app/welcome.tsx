@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StatusBar } from "react-native";
 import { router } from "expo-router";
+import { ROUTES } from "@/util/constant/routes";
 import WelcomeScreenSvg from "@/assets/images/welcomescreen.svg"; // SVG as component
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/util/constant/responsive";
 
 const WelcomeScreen = () => {
   const handleContinue = () => {
-    router.push("/home"); // navigate to login or onboarding
+    router.push(ROUTES.BOTTOM_TAB.HOME);
   };
 
   return (

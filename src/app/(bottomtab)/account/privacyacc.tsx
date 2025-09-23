@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View, ScrollView } from "react-native";
 import { Text } from "@/components/core/text";
 import { COLORS } from "@/util/constant/colors";
@@ -31,11 +31,10 @@ const PrivacyAccScreen = () => {
   const [privacySettings, setPrivacySettings] =
     useState<PrivacySettings>(PRIVACY_SETTINGS);
 
-  const handleToggle = (id: string) => {
+  const handleToggle = useCallback((id: string) => {
     setPrivacySettings((prev) => {
       const newSettings = { ...prev };
 
-      // Find and toggle the specific privacy item
       Object.keys(newSettings).forEach((sectionKey) => {
         const section = newSettings[sectionKey as keyof typeof newSettings];
         if (Array.isArray(section)) {
@@ -49,7 +48,7 @@ const PrivacyAccScreen = () => {
 
       return newSettings;
     });
-  };
+  }, []);
 
   return (
     <SafeAreaView

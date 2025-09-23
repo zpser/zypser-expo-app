@@ -5,28 +5,30 @@ import CustomHeader from "@/components/core/header";
 import Footer from "@/components/auth/CommonFooter";
 import { Text } from "@/components/core/text";
 import { PhoneInput, EmailInput, SocialLogin } from "@/components/auth";
-import { useLoginLogic } from "@/hooks/auth";
+import { useLoginForms } from "@/hooks/auth/login/useLoginForms";
+import { useLoginState } from "@/hooks/auth/login/useLoginState";
+import { useLoginSubmit } from "@/hooks/auth/login/useLoginSubmit";
 import { LoginMethod } from "@/@types/login";
 import { COLORS } from "@/util/constant/colors";
 import GradientButton from "@/components/auth/GradientButton";
 
 const Login = () => {
-  const {
-    // State
-    loginMethod,
-    isLoading,
+  // Use smaller, focused hooks
+  const { phoneForm, emailForm } = useLoginForms();
+  const { loginMethod, setLoginMethod, isLoading, setIsLoading } =
+    useLoginState();
+  const { onPhoneSubmit, onEmailSubmit } = useLoginSubmit(setIsLoading);
 
-    // Forms
-    phoneForm,
-    emailForm,
+  // Inline social login handlers
+  const handleGoogleLogin = () => {
+    console.log("Continue with Google");
+    console.log("Info", "Google login not implemented yet");
+  };
 
-    // Actions
-    setLoginMethod,
-    onPhoneSubmit,
-    onEmailSubmit,
-    handleGoogleLogin,
-    handleAppleLogin,
-  } = useLoginLogic();
+  const handleAppleLogin = () => {
+    console.log("Continue with Apple");
+    console.log("Info", "Apple login not implemented yet");
+  };
 
   return (
     <SafeAreaView

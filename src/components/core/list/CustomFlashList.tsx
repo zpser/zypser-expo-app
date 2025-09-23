@@ -100,7 +100,9 @@ function CustomFlashListComponent<T>(
   const renderLoadingComponent = () =>
     renderCustom(loadingComponent) ?? (
       <View
-        className={`flex-1 justify-center items-center py-8 ${loadingClassName || ""}`}
+        className={`flex-1 justify-center items-center py-8 ${
+          loadingClassName || ""
+        }`}
       >
         <ActivityIndicator size="large" color={COLORS.primary} />
         <Text variant="body" className="text-gray-500 mt-2">
@@ -114,7 +116,9 @@ function CustomFlashListComponent<T>(
     return (
       renderCustom(emptyComponent) ?? (
         <View
-          className={`flex-1 justify-center items-center py-8 ${emptyClassName || ""}`}
+          className={`flex-1 justify-center items-center py-8 ${
+            emptyClassName || ""
+          }`}
           style={emptyStyle}
         >
           <Text variant="body" className="text-gray-500 text-center">
@@ -128,7 +132,9 @@ function CustomFlashListComponent<T>(
   const renderErrorComponent = () =>
     renderCustom(errorComponent) ?? (
       <View
-        className={`flex-1 justify-center items-center py-8 ${errorClassName || ""}`}
+        className={`flex-1 justify-center items-center py-8 ${
+          errorClassName || ""
+        }`}
         style={errorStyle}
       >
         <Text variant="body" className="text-red-500 text-center">

@@ -1,6 +1,7 @@
 // app/(bottomtab)/orders/canceled.tsx
 import React, { useMemo, useCallback } from "react";
 import { COLORS } from "@/util/constant/colors";
+import { ROUTES, getOrderDetailRoute } from "@/util/constant/routes";
 import { OrderStatus, OrderItem } from "@/@types/order";
 import { OrderCard } from "@/components/orders/OrderCard";
 import CustomFlashList from "@/components/core/list/CustomFlashList";
@@ -9,7 +10,7 @@ import { router } from "expo-router";
 
 export default function CanceledOrders() {
   const handleOrderPress = useCallback((orderId: string) => {
-    router.push(`/orders/${orderId}`);
+    router.push(getOrderDetailRoute(orderId));
 
     console.log("Canceled order pressed:", orderId);
     // Navigate to order details
